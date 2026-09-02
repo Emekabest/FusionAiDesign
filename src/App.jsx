@@ -4,6 +4,12 @@ import { useState } from 'react'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [mobileNavOpenSections, setMobileNavOpenSections] = useState({
+    design: false,
+    explore: false,
+    learn: false,
+    shop: false,
+  })
   const [footerOpenSections, setFooterOpenSections] = useState({
     company: false,
     explore: false,
@@ -15,6 +21,13 @@ function App() {
 
   const toggleFooterSection = (sectionName) => {
     setFooterOpenSections((currentSections) => ({
+      ...currentSections,
+      [sectionName]: !currentSections[sectionName],
+    }))
+  }
+
+  const toggleMobileNavSection = (sectionName) => {
+    setMobileNavOpenSections((currentSections) => ({
       ...currentSections,
       [sectionName]: !currentSections[sectionName],
     }))
@@ -183,6 +196,12 @@ function App() {
                 </div>
               </div>
             </li>
+            <li className="site-header__nav-item">
+              <a href="/">About Us</a>
+            </li>
+            <li className="site-header__nav-item">
+              <a href="/">Contact Us</a>
+            </li>
           </ul>
         </nav>
 
@@ -225,20 +244,204 @@ function App() {
           </div>
 
           <nav className="mobile-menu-modal__nav" aria-label="Mobile primary">
+            <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.design ? 'mobile-menu-modal__nav-section--open' : ''}`}>
+              <div className="mobile-menu-modal__nav-item">
+                <a href="/">Design</a>
+                <button
+                  className="mobile-menu-modal__chevron-button"
+                  type="button"
+                  aria-label={`${mobileNavOpenSections.design ? 'Collapse' : 'Expand'} Design menu`}
+                  aria-expanded={mobileNavOpenSections.design}
+                  onClick={() => toggleMobileNavSection('design')}
+                >
+                  <span className="mobile-menu-modal__chevron" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="mobile-menu-modal__submenu">
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Work with a designer</h3>
+                  <ul>
+                    <li><a href="/">Interior Design Services</a></li>
+                    <li><a href="/">In-Person Interior Design</a></li>
+                    <li><a href="/">AI Interior Design</a></li>
+                  </ul>
+                </div>
+
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Find your designer</h3>
+                  <ul>
+                    <li><a href="/">Interior Designers</a></li>
+                    <li><a href="/">Designers by City</a></li>
+                  </ul>
+                </div>
+
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Plan your project</h3>
+                  <ul>
+                    <li><a href="/">Pricing &amp; Packages</a></li>
+                    <li><a href="/">Interior Design Cost Guide</a></li>
+                    <li><a href="/">Interior Design Style Quiz</a></li>
+                    <li><a href="/">Gift Cards</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.explore ? 'mobile-menu-modal__nav-section--open' : ''}`}>
+              <div className="mobile-menu-modal__nav-item">
+                <a href="/">Explore</a>
+                <button
+                  className="mobile-menu-modal__chevron-button"
+                  type="button"
+                  aria-label={`${mobileNavOpenSections.explore ? 'Collapse' : 'Expand'} Explore menu`}
+                  aria-expanded={mobileNavOpenSections.explore}
+                  onClick={() => toggleMobileNavSection('explore')}
+                >
+                  <span className="mobile-menu-modal__chevron" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="mobile-menu-modal__submenu">
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Ideas by Room</h3>
+                  <ul>
+                    <li><a href="/">Living Room Ideas</a></li>
+                    <li><a href="/">Bedroom Ideas</a></li>
+                    <li><a href="/">Dining Room Ideas</a></li>
+                    <li><a href="/">Home Office Ideas</a></li>
+                    <li><a href="/">Nursery Ideas</a></li>
+                    <li><a href="/">Outdoor &amp; Patio Ideas</a></li>
+                    <li><a href="/">Entryway Ideas</a></li>
+                  </ul>
+                </div>
+
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Ideas by style</h3>
+                  <ul>
+                    <li><a href="/">Modern Boho</a></li>
+                    <li><a href="/">Mid-Century Modern</a></li>
+                    <li><a href="/">Coastal</a></li>
+                    <li><a href="/">Modern Farmhouse</a></li>
+                    <li><a href="/">Traditional</a></li>
+                    <li><a href="/">Scandinavian</a></li>
+                    <li><a href="/">Glam</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.learn ? 'mobile-menu-modal__nav-section--open' : ''}`}>
+              <div className="mobile-menu-modal__nav-item">
+                <a href="/">Learn</a>
+                <button
+                  className="mobile-menu-modal__chevron-button"
+                  type="button"
+                  aria-label={`${mobileNavOpenSections.learn ? 'Collapse' : 'Expand'} Learn menu`}
+                  aria-expanded={mobileNavOpenSections.learn}
+                  onClick={() => toggleMobileNavSection('learn')}
+                >
+                  <span className="mobile-menu-modal__chevron" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="mobile-menu-modal__submenu">
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Design 101</h3>
+                  <ul>
+                    <li><a href="/">What Is Online Interior Design?</a></li>
+                    <li><a href="/">Online vs. Traditional Interior Design</a></li>
+                    <li><a href="/">What's My Interior Design Style?</a></li>
+                    <li><a href="/">Is Havenly Worth It?</a></li>
+                    <li><a href="/">Interior Design Guides</a></li>
+                  </ul>
+                </div>
+
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Cost Guides</h3>
+                  <ul>
+                    <li><a href="/">How Much Does Interior Design Cost?</a></li>
+                    <li><a href="/">Kitchen Renovation Costs</a></li>
+                    <li><a href="/">Bathroom Renovation Costs</a></li>
+                    <li><a href="/">Living Room Design Costs</a></li>
+                    <li><a href="/">See all guides</a></li>
+                  </ul>
+                </div>
+
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>From the blog</h3>
+                  <ul>
+                    <li><a href="/">Decorating How-To</a></li>
+                    <li><a href="/">Style Guides</a></li>
+                    <li><a href="/">Furniture Buying Guides</a></li>
+                    <li><a href="/">Home Tours</a></li>
+                    <li><a href="/">Visit the blog</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.shop ? 'mobile-menu-modal__nav-section--open' : ''}`}>
+              <div className="mobile-menu-modal__nav-item">
+                <a href="/">Shop</a>
+                <button
+                  className="mobile-menu-modal__chevron-button"
+                  type="button"
+                  aria-label={`${mobileNavOpenSections.shop ? 'Collapse' : 'Expand'} Shop menu`}
+                  aria-expanded={mobileNavOpenSections.shop}
+                  onClick={() => toggleMobileNavSection('shop')}
+                >
+                  <span className="mobile-menu-modal__chevron" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="mobile-menu-modal__submenu">
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Furniture</h3>
+                  <ul>
+                    <li><a href="/">Sofas &amp; Sectionals</a></li>
+                    <li><a href="/">Accent Chairs</a></li>
+                    <li><a href="/">Coffee &amp; Accent Tables</a></li>
+                    <li><a href="/">Media Consoles</a></li>
+                    <li><a href="/">Beds &amp; Headboards</a></li>
+                    <li><a href="/">Dining Tables &amp; Chairs</a></li>
+                    <li><a href="/">Shop all furniture</a></li>
+                  </ul>
+                </div>
+
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Décor &amp; lighting</h3>
+                  <ul>
+                    <li><a href="/">Rugs</a></li>
+                    <li><a href="/">Throw Pillows</a></li>
+                    <li><a href="/">Wall Art &amp; Mirrors</a></li>
+                    <li><a href="/">Table &amp; Floor Lamps</a></li>
+                    <li><a href="/">Vases &amp; Botanicals</a></li>
+                    <li><a href="/">Shop all décor</a></li>
+                  </ul>
+                </div>
+
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3>Our brands</h3>
+                  <ul>
+                    <li><a href="/">Burrow</a></li>
+                    <li><a href="/">Interior Define</a></li>
+                    <li><a href="/">The Citizenry</a></li>
+                    <li><a href="/">The Inside</a></li>
+                    <li><a href="/">St. Frank</a></li>
+                    <li><a href="/">Shop by style</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             <div className="mobile-menu-modal__nav-item">
-              <a href="/">Design</a>
+              <a href="/">About Us</a>
               <span className="mobile-menu-modal__chevron" aria-hidden="true" />
             </div>
+
             <div className="mobile-menu-modal__nav-item">
-              <a href="/">Explore</a>
-              <span className="mobile-menu-modal__chevron" aria-hidden="true" />
-            </div>
-            <div className="mobile-menu-modal__nav-item">
-              <a href="/">Learn</a>
-              <span className="mobile-menu-modal__chevron" aria-hidden="true" />
-            </div>
-            <div className="mobile-menu-modal__nav-item">
-              <a href="/">Shop</a>
+              <a href="/">Contact Us</a>
               <span className="mobile-menu-modal__chevron" aria-hidden="true" />
             </div>
           </nav>
