@@ -639,17 +639,16 @@ function App() {
 
       <section className="testimonials" aria-label="Customer testimonials">
         <div className="testimonials__heading">
-          <p className="testimonials__eyebrow">Testimonials</p>
-          <h2>What homeowners are saying</h2>
+          <p className="testimonials__eyebrow">Review Spotlight</p>
+          <h2>Real Reviews</h2>
         </div>
 
         <div className="testimonials__viewport">
           <div className="testimonials__track">
-            {[...testimonials, ...testimonials].map((testimonial, index) => (
+            {testimonials.map((testimonial, index) => (
               <article
                 className="testimonial-card"
                 key={`${testimonial.name}-${index}`}
-                aria-hidden={index >= testimonials.length}
               >
                 <h3>{testimonial.name}</h3>
 
@@ -666,6 +665,16 @@ function App() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="room-cta" aria-label="Get started call to action">
+        <p className="room-cta__eyebrow">Your room, your way. Let&apos;s get started.</p>
+        <p className="room-cta__body">
+          Take the quiz, get matched, and build a plan you can shop at your own pace. The best part? Seeing it all come to life.
+        </p>
+        <a className="site-header__getstarted room-cta__button" href="/">
+          Get Started
+        </a>
       </section>
 
 
