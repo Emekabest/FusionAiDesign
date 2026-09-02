@@ -5,8 +5,11 @@
   grid-template-columns: minmax(140px, 220px) 1fr auto;
   align-items: center;
   gap: 24px;
-  border-bottom: 1px solid rgba(24, 24, 22, 0.12);
-  background: #fffaf4;
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid rgba(24, 24, 22, 0.08);
+  background: rgba(255, 250, 244, 0.18);
+  backdrop-filter: blur(6px);
 }
 
 .site-header__brand {
@@ -26,8 +29,21 @@
   align-items: center;
 }
 
-.site-header__actions {
-  gap: 14px;
+.site-header__nav-list,
+.site-header__actions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.site-header__nav-list {
+  gap: 18px;
+}
+
+.site-header__actions-list {
+  gap: 12px;
 }
 
 .site-header__nav {
@@ -37,6 +53,7 @@
 .site-header__nav a,
 .site-header__login,
 .site-header__getstarted {
+  font-family: 'DM Sans', sans-serif;
   color: #1b1916;
   text-decoration: none;
   font-size: 0.92rem;
@@ -64,8 +81,24 @@
   letter-spacing: 0.05em;
 }
 
+.hero-stage {
+  position: relative;
+  min-height: 100svh;
+  margin-top: -92px;
+  overflow: hidden;
+}
+
+.hero-stage__media {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 @media (max-width: 720px) {
   .site-header {
+    min-height: auto;
     grid-template-columns: 1fr;
     justify-items: start;
     gap: 14px;
@@ -78,6 +111,10 @@
 
   .site-header__nav a {
     white-space: normal;
+  }
+
+  .hero-stage {
+    margin-top: -1px;
   }
 }
 
