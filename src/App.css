@@ -269,6 +269,118 @@
   z-index: 0;
 }
 
+.service-cards {
+  position: relative;
+  z-index: 3;
+  margin-top: 0;
+  padding: 0 clamp(20px, 4vw, 56px) 40px;
+  max-width: 1200px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0px;
+}
+
+.service-cards--overlap {
+  margin-top: -72px;
+}
+
+.service-card {
+  width: min(100%, 300px);
+  justify-self: center;
+  min-height: 360px;
+  padding: clamp(28px, 4vw, 44px);
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
+}
+
+.service-card__mobile-header {
+  display: none;
+}
+
+.service-card__mobile-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.service-card__toggle {
+  display: none;
+}
+
+.service-card__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card--online {
+  background: #b83037;
+}
+
+.service-card--inperson {
+  background: #6b6733;
+}
+
+.service-card__eyebrow {
+  margin: 0 0 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.service-card h2 {
+  margin: 0;
+  max-width: 12ch;
+  font-family: 'Italiana', serif;
+  font-size: clamp(2.4rem, 4.6vw, 4.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  color: #fff;
+}
+
+.service-card p:last-child {
+  margin: 16px 0 0;
+  max-width: 34ch;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.service-intro {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 150px clamp(20px, 4vw, 56px) 200px;
+  text-align: center;
+}
+
+.service-intro__eyebrow {
+  margin: 0;
+  font-family: 'Italiana', serif;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: #181816;
+}
+
+.service-intro h2 {
+  margin: 10px 0 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #181816;
+}
+
 @media (max-width: 720px) {
   .site-header {
     min-height: 48px;
@@ -589,6 +701,114 @@
   .hero-stage__getstarted {
     margin-inline: auto;
     padding: 15px 42px;
+    font-size: 0.95rem;
+  }
+
+  .service-cards {
+    margin-top: -34px;
+    padding: 0 16px 28px;
+    grid-template-columns: 1fr;
+  }
+
+  .service-cards--overlap {
+    margin-top: -34px;
+  }
+
+  .service-card {
+    width: 90%;
+    min-height: 30px;
+    border-radius: 18px;
+    padding: 10px 12px;
+    /* margin-bottom: 15px; */
+    margin: 0px 10px 15px 10px;
+    overflow: hidden;
+    transition: min-height 180ms ease;
+  }
+
+  .service-card__mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 26px;
+  }
+
+  .service-card__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #fff;
+    position: relative;
+  }
+
+  .service-card__toggle span {
+    position: absolute;
+    width: 14px;
+    height: 1.8px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform 180ms ease;
+  }
+
+  .service-card__toggle span:last-child {
+    transform: rotate(90deg);
+  }
+
+  .service-card--open .service-card__toggle span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .service-card--open .service-card__toggle span:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .service-card__body {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 220ms ease, opacity 180ms ease, margin-top 180ms ease;
+  }
+
+  .service-card--open {
+    min-height: 170px;
+  }
+
+  .service-card--open .service-card__body {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 8px;
+  }
+
+  .service-card__eyebrow {
+    display: none;
+  }
+
+  .service-card h2 {
+    max-width: 13ch;
+    font-size: clamp(1.55rem, 7vw, 2.3rem);
+  }
+
+  .service-card p:last-child {
+    max-width: 28ch;
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  .service-intro {
+    padding: 12px 16px 40px;
+  }
+
+  .service-intro__eyebrow {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+
+  .service-intro h2 {
+    margin-top: 8px;
     font-size: 0.95rem;
   }
 }

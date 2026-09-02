@@ -1,9 +1,14 @@
 import './App.css'
 import heroImage from '../assets/hero.jpg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [cardsOverlapHero, setCardsOverlapHero] = useState(false)
+  const [serviceCardOpen, setServiceCardOpen] = useState({
+    online: false,
+    inperson: false,
+  })
   const [mobileNavOpenSections, setMobileNavOpenSections] = useState({
     design: false,
     explore: false,
@@ -32,6 +37,24 @@ function App() {
       [sectionName]: !currentSections[sectionName],
     }))
   }
+
+  const toggleServiceCard = (sectionName) => {
+    setServiceCardOpen((currentSections) => ({
+      ...currentSections,
+      [sectionName]: !currentSections[sectionName],
+    }))
+  }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setCardsOverlapHero(window.scrollY > 24)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <>
@@ -491,6 +514,64 @@ function App() {
           aria-hidden="true"
         />
       </main>
+
+      <section
+        className={`service-cards ${cardsOverlapHero ? 'service-cards--overlap' : ''}`}
+        aria-label="Interior design services"
+      >
+        <article className={`service-card service-card--online ${serviceCardOpen.online ? 'service-card--open' : ''}`}>
+          <div className="service-card__mobile-header">
+            <span className="service-card__mobile-label">Online</span>
+            <button
+              className="service-card__toggle"
+              type="button"
+              aria-label={`${serviceCardOpen.online ? 'Collapse' : 'Expand'} online interior design services`}
+              aria-expanded={serviceCardOpen.online}
+              onClick={() => toggleServiceCard('online')}
+            >
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+            </button>
+          </div>
+
+          <div className="service-card__body">
+            <p className="service-card__eyebrow">Online Interior Design Services</p>
+            <h2>Modern design support from anywhere.</h2>
+            <p>
+              Create a polished, personal space with guided design help, thoughtful sourcing, and a clear plan from start to finish.
+            </p>
+          </div>
+        </article>
+
+        <article className={`service-card service-card--inperson ${serviceCardOpen.inperson ? 'service-card--open' : ''}`}>
+          <div className="service-card__mobile-header">
+            <span className="service-card__mobile-label">In Person</span>
+            <button
+              className="service-card__toggle"
+              type="button"
+              aria-label={`${serviceCardOpen.inperson ? 'Collapse' : 'Expand'} in-person interior design services`}
+              aria-expanded={serviceCardOpen.inperson}
+              onClick={() => toggleServiceCard('inperson')}
+            >
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+            </button>
+          </div>
+
+          <div className="service-card__body">
+            <p className="service-card__eyebrow">In-Person Interior Design Services</p>
+            <h2>Hands-on design for a more tailored experience.</h2>
+            <p>
+              Work directly with a designer in your home for styling, planning, and room-by-room support that feels highly customized.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section className="service-intro" aria-label="Design room count overview">
+        <p className="service-intro__eyebrow">Over 2 million room designs and counting.</p>
+        <h2>Transform your home with one of our talented designers.</h2>
+      </section>
 
       <footer className="site-footer" aria-label="Site footer">
         <div className="site-footer__grid">
