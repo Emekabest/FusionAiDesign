@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f3f0e9;
+  color: #181816;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navbar {
+  height: 90px;
+  padding: 0 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(24, 24, 22, 0.15);
+}
+
+.logo {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 38px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.menu-btn {
+  display: none;
+  border: 0;
+  background: none;
+}
+
+.hero {
+  min-height: 78vh;
+  padding: 7vw 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 1000px;
+}
+
+.eyebrow,
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin-bottom: 50px;
+}
+
+.hero h1 {
+  font-size: clamp(70px, 11vw, 170px);
+  line-height: 0.84;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+}
+
+.hero h1 span {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+.hero-description {
+  max-width: 410px;
+  margin-top: 55px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.hero-link,
+.contact-link {
+  display: inline-block;
+  margin-top: 35px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #181816;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-link span {
+  margin-left: 30px;
+}
+
+.hero-number {
+  position: absolute;
+  right: 5vw;
+  bottom: 50px;
+  font-size: 11px;
+}
+
+.intro {
+  padding: 13vw 5vw;
+  background: #181816;
+  color: #f3f0e9;
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+
+.intro-content {
+  max-width: 850px;
+}
+
+.intro h2 {
+  font-size: clamp(45px, 6vw, 90px);
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.intro h2 em,
+.contact h2 em {
+  font-family: 'Playfair Display', serif;
+}
+
+.intro-content > p {
+  max-width: 500px;
+  margin-top: 60px;
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: 0.7;
+}
+
+.work {
+  padding: 12vw 5vw;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+}
+
+.section-heading h2 {
+  font-size: 70px;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 70px 30px;
+}
+
+.project-large {
+  grid-row: span 2;
+}
+
+.project-image {
+  width: 100%;
+  height: 430px;
+  background-size: cover;
+  background-position: center;
+}
+
+.project-large .project-image {
+  height: 700px;
+}
+
+.image-one {
+  background-image:
+    linear-gradient(rgba(20,20,20,.05), rgba(20,20,20,.05)),
+    url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85');
+}
+
+.image-two {
+  background-image:
+    linear-gradient(rgba(20,20,20,.05), rgba(20,20,20,.05)),
+    url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=85');
+}
+
+.image-three {
+  background-image:
+    linear-gradient(rgba(20,20,20,.05), rgba(20,20,20,.05)),
+    url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85');
+}
+
+.project-info {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 18px;
+}
+
+.project-info h3 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.project-info p {
+  margin-top: 7px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+}
+
+.services {
+  padding: 12vw 5vw;
+  background: #dedbd3;
+}
+
+.services-header {
+  margin: 80px 0;
+}
+
+.services-header h2 {
+  font-size: clamp(55px, 8vw, 120px);
+  line-height: 0.88;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+
+.service-list {
+  border-top: 1px solid rgba(24, 24, 22, 0.3);
+}
+
+.service {
+  display: grid;
+  grid-template-columns: 10% 35% 55%;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(24, 24, 22, 0.3);
+}
+
+.service span {
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+.service h3 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.service p {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.contact {
+  padding: 15vw 5vw;
+  background: #181816;
+  color: #f3f0e9;
+}
+
+.contact h2 {
+  margin-top: 100px;
+  font-size: clamp(65px, 10vw, 150px);
+  line-height: 0.85;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+
+.contact-link {
+  border-color: #f3f0e9;
+  margin-top: 70px;
+}
+
+footer {
+  padding: 30px 5vw;
+  background: #181816;
+  color: #f3f0e9;
+  border-top: 1px solid rgba(243, 240, 233, 0.2);
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    height: 70px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .menu-btn {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero {
+    min-height: 75vh;
+    padding-top: 50px;
+  }
+
+  .eyebrow {
+    margin-bottom: 45px;
+    max-width: 250px;
+    line-height: 1.6;
+  }
+
+  .hero h1 {
+    font-size: 18vw;
+  }
+
+  .hero-description {
+    margin-top: 45px;
+  }
+
+  .intro {
+    display: block;
+    padding: 90px 5vw;
+  }
+
+  .intro-content {
+    margin-top: 60px;
+  }
+
+  .intro h2 {
+    font-size: 48px;
+  }
+
+  .section-heading {
+    display: block;
+    margin-bottom: 50px;
+  }
+
+  .section-heading h2 {
+    margin-top: 30px;
+    font-size: 60px;
+  }
+
+  .project-grid {
+    display: block;
+  }
+
+  .project {
+    margin-bottom: 60px;
+  }
+
+  .project-large .project-image,
+  .project-image {
+    height: 430px;
+  }
+
+  .services-header {
+    margin: 60px 0;
+  }
+
+  .service {
+    grid-template-columns: 15% 85%;
+    gap: 15px;
+  }
+
+  .service p {
+    grid-column: 2;
+  }
+
+  .contact h2 {
+    margin-top: 70px;
+    font-size: 18vw;
+  }
+}
