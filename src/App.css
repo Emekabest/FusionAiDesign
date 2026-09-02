@@ -13,6 +13,23 @@
   border-bottom: 0;
   background: transparent;
   backdrop-filter: blur(6px);
+  transition: background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.site-header--solid {
+  background: #fffaf4;
+  box-shadow: 0 10px 30px rgba(24, 24, 22, 0.08);
+}
+
+.site-header--solid .site-header__nav a,
+.site-header--solid .site-header__login,
+.site-header--solid .design-menu__group h3,
+.site-header--solid .site-header__nav .design-menu a {
+  color: #181816;
+}
+
+.site-header--solid .site-header__nav a {
+  letter-spacing: 0.08em;
 }
 
 .site-header::after {
@@ -1277,7 +1294,7 @@
 }
 
 .site-footer {
-  padding: 48px clamp(20px, 5vw, 72px) 32px;
+  padding: 40px clamp(20px, 5vw, 72px) 28px;
   background: #f3f0e9;
   color: #181816;
   border-top: 1px solid rgba(24, 24, 22, 0.12);
@@ -1286,14 +1303,14 @@
 .site-footer__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px 36px;
+  gap: 22px 32px;
 }
 
 .site-footer__section h2 {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
-  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   color: rgba(24, 24, 22, 0.72);
 }
@@ -1311,19 +1328,19 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .site-footer__section li {
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.45;
+  font-size: 0.88rem;
+  line-height: 1.4;
   color: #181816;
 }
 
 .site-footer__legal {
-  margin-top: 40px;
-  padding-top: 22px;
+  margin-top: 32px;
+  padding-top: 18px;
   border-top: 1px solid rgba(24, 24, 22, 0.12);
   display: flex;
   flex-wrap: wrap;
@@ -1335,7 +1352,7 @@
 .site-footer__legal p {
   margin: 0;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   letter-spacing: 0.02em;
   color: rgba(24, 24, 22, 0.92);
 }
@@ -1348,7 +1365,7 @@
 
 .site-footer__legal-links span {
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   color: rgba(24, 24, 22, 0.72);
 }
 

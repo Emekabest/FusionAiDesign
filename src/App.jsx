@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardsOverlapHero, setCardsOverlapHero] = useState(false)
+  const [headerSolid, setHeaderSolid] = useState(false)
   const [serviceCardOpen, setServiceCardOpen] = useState({
     online: false,
     inperson: false,
@@ -77,17 +78,22 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       setCardsOverlapHero(window.scrollY > 24)
+      setHeaderSolid(window.innerWidth > 720 && window.scrollY > window.innerHeight - 48)
     }
 
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [])
 
   return (
     <>
-      <header className={`site-header ${menuOpen ? 'site-header--open' : ''}`}>
+      <header className={`site-header ${headerSolid ? 'site-header--solid' : ''} ${menuOpen ? 'site-header--open' : ''}`}>
         <a className="site-header__brand" href="/" aria-label="Fusion Home">
           <img
             src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/3f0bb9e3-71eb-4f35-b164-32c0d3e3a381/Fusion%2BFINALLogo-2022-Color.png"
