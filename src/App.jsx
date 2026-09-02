@@ -56,4 +56,8 @@ function App() {
   )
 }
 
+// Now for mobile view the image should reduce and let there be a hambugar icon  the top right to list out the "li a" and also the login
+
+// The getstarted should be 
+
 export default App
