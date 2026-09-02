@@ -1,5 +1,8 @@
 import './App.css'
 import heroImage from '../assets/hero.jpg'
+import lobbyOneImage from '../assets/Lobby1.jpg'
+import lobbyTwoImage from '../assets/Lobby2.jpeg'
+import lobbyThreeImage from '../assets/Lobby3.jpg'
 import { useEffect, useState } from 'react'
 
 function App() {
@@ -573,6 +576,50 @@ function App() {
         <h2>Transform your home with one of our talented designers.</h2>
       </section>
 
+      <section className="lobby-cards" aria-label="Lobby design cards">
+        <article className="lobby-card">
+          <div className="lobby-card__image-wrap">
+            <img src={lobbyOneImage} alt="Lobby design inspiration one" />
+          </div>
+          <div className="lobby-card__content">
+            <h3>Design Your Timeline</h3>
+            <p>
+              Start when you are ready and move at a pace that fits your life, with guidance that keeps every step simple.
+            </p>
+          </div>
+        </article>
+
+        <article className="lobby-card">
+          <div className="lobby-card__image-wrap">
+            <img src={lobbyTwoImage} alt="Lobby design inspiration two" />
+          </div>
+          <div className="lobby-card__content">
+            <h3>Bring Your Inspiration</h3>
+            <p>
+              Share the ideas, colors, and references you love, and let a designer shape them into a cohesive space.
+            </p>
+          </div>
+        </article>
+
+        <article className="lobby-card">
+          <div className="lobby-card__image-wrap">
+            <img src={lobbyThreeImage} alt="Lobby design inspiration three" />
+          </div>
+          <div className="lobby-card__content">
+            <h3>Shop at the Best Prices</h3>
+            <p>
+              Discover thoughtful options and well-priced pieces that help you complete the room without losing style.
+            </p>
+          </div>
+        </article>
+      </section>
+
+
+
+    
+
+
+
       <footer className="site-footer" aria-label="Site footer">
         <div className="site-footer__grid">
           <section className={`site-footer__section ${footerOpenSections.company ? 'site-footer__section--open' : ''}`}>
@@ -620,7 +667,6 @@ function App() {
               <li>Refer &amp; Earn</li>
               <li>Help Center</li>
               <li>Promotions</li>
-              <li>Havenly AI</li>
               <li>Learn</li>
             </ul>
           </section>
