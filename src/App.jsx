@@ -3,6 +3,8 @@ import heroImage from '../assets/hero.jpg'
 import lobbyOneImage from '../assets/Lobby1.jpg'
 import lobbyTwoImage from '../assets/Lobby2.jpeg'
 import lobbyThreeImage from '../assets/Lobby3.jpg'
+import aliceImage from '../assets/Alice.jpg'
+import elaineImage from '../assets/Elaine.jpg'
 import { useEffect, useState } from 'react'
 
 function App() {
@@ -694,6 +696,44 @@ function App() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="meet-team" aria-label="Meet the team">
+        <div className="meet-team__intro">
+          <p className="meet-team__eyebrow">Meet the Team</p>
+          <h2>Meet the people shaping every project.</h2>
+          <p>
+            Fusion A.I. Design brings together experienced leadership and hands-on project coordination to keep every design thoughtful, responsive, and personal.
+          </p>
+        </div>
+
+        <div className="meet-team__members">
+          <article className="team-member-card">
+            <div className="team-member-card__image-wrap">
+              <img src={aliceImage} alt="Alice Joseph-Limer" />
+            </div>
+            <div className="team-member-card__content">
+              <p className="team-member-card__role">ALICE JOSEPH-LIMER | FOUNDING PRINCIPAL &amp; CEO</p>
+              <h3>Alice Joseph-Limer</h3>
+              <p>
+                Alice is a licensed Interior Designer with a Master of Architecture degree from Virginia Tech and a Bachelor of Science degree in Interior Design, followed by 25+ years of professional practice.
+              </p>
+            </div>
+          </article>
+
+          <article className="team-member-card">
+            <div className="team-member-card__image-wrap">
+              <img src={elaineImage} alt="Elaine Donnelly" />
+            </div>
+            <div className="team-member-card__content">
+              <p className="team-member-card__role">ELAINE DONNELLY | ASSOCIATE &amp; PROJECT MANAGER</p>
+              <h3>Elaine Donnelly</h3>
+              <p>
+                Elaine Donnelly is a Licensed Sr. Interior Designer at Fusion A.I. Design, holding a Bachelor of Fine Arts degree in Interior Design. Her proficiency in technology, extensive design experience, and her open communication manner are key to project coordination, leadership, and creativity in the studio.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
 
