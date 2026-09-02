@@ -48,6 +48,29 @@ function App() {
     }))
   }
 
+  const testimonials = [
+    {
+      name: 'Ava M.',
+      quote: 'The process felt calm and organized from the first call. I always knew what was coming next.',
+    },
+    {
+      name: 'Jordan R.',
+      quote: 'Our designer turned a few ideas into a room that feels finished, warm, and completely personal.',
+    },
+    {
+      name: 'Priya S.',
+      quote: 'I loved being able to move at my own pace while still making real progress on the design.',
+    },
+    {
+      name: 'Elena T.',
+      quote: 'The recommendations made shopping easy, and the final result looks better than I expected.',
+    },
+    {
+      name: 'Marcus D.',
+      quote: 'It was simple to share inspiration, and the final plan felt tailored to the way we live.',
+    },
+  ]
+
   useEffect(() => {
     const handleScroll = () => {
       setCardsOverlapHero(window.scrollY > 24)
@@ -612,6 +635,37 @@ function App() {
             </p>
           </div>
         </article>
+      </section>
+
+      <section className="testimonials" aria-label="Customer testimonials">
+        <div className="testimonials__heading">
+          <p className="testimonials__eyebrow">Testimonials</p>
+          <h2>What homeowners are saying</h2>
+        </div>
+
+        <div className="testimonials__viewport">
+          <div className="testimonials__track">
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
+              <article
+                className="testimonial-card"
+                key={`${testimonial.name}-${index}`}
+                aria-hidden={index >= testimonials.length}
+              >
+                <h3>{testimonial.name}</h3>
+
+                <div className="testimonial-card__stars" aria-label="Five star rating">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <svg key={starIndex} viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2.4l2.83 5.74 6.34.92-4.59 4.48 1.08 6.31L12 16.95l-5.66 2.9 1.08-6.31-4.59-4.48 6.34-.92L12 2.4Z" />
+                    </svg>
+                  ))}
+                </div>
+
+                <p>{testimonial.quote}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
 

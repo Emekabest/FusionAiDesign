@@ -444,6 +444,115 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
+.testimonials {
+  overflow: hidden;
+  padding: 0 0 92px;
+}
+
+.testimonials__heading {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+
+.testimonials__eyebrow {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(24, 24, 22, 0.62);
+}
+
+.testimonials__heading h2 {
+  margin: 8px 0 0;
+  font-family: 'Italiana', serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #181816;
+}
+
+.testimonials__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.testimonials__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials__track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  padding: 0 clamp(20px, 4vw, 56px);
+  animation: testimonial-scroll 34s linear infinite;
+  will-change: transform;
+}
+
+.testimonials__track:hover {
+  animation-play-state: paused;
+}
+
+.testimonial-card {
+  flex: 0 0 clamp(280px, 34vw, 440px);
+  min-height: 240px;
+  padding: 26px 24px 24px;
+  border-radius: 26px;
+  background: #fff;
+  border: 1px solid rgba(24, 24, 22, 0.08);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.08);
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  scroll-snap-align: start;
+}
+
+.testimonial-card h3 {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #181816;
+}
+
+.testimonial-card__stars {
+  display: flex;
+  gap: 4px;
+  color: #d79b2a;
+}
+
+.testimonial-card__stars svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.testimonial-card p {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(24, 24, 22, 0.82);
+}
+
+@keyframes testimonial-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 720px) {
   .site-header {
     min-height: 48px;
@@ -892,6 +1001,29 @@
 
   .lobby-card__content h3 {
     font-size: 1.8rem;
+  }
+
+  .testimonials {
+    padding-bottom: 64px;
+  }
+
+  .testimonials__heading {
+    margin-bottom: 14px;
+    padding: 0 16px;
+  }
+
+  .testimonials__track {
+    gap: 14px;
+    padding: 0 16px;
+    animation: none;
+    width: max-content;
+  }
+
+  .testimonial-card {
+    flex-basis: 78vw;
+    min-height: 220px;
+    border-radius: 22px;
+    padding: 22px 18px 20px;
   }
 }
 
