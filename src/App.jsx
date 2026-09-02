@@ -17,6 +17,7 @@ function App() {
     explore: false,
     learn: false,
     shop: false,
+    about: false,
   })
   const [footerOpenSections, setFooterOpenSections] = useState({
     company: false,
@@ -245,8 +246,17 @@ function App() {
                 </div>
               </div>
             </li>
-            <li className="site-header__nav-item">
+            <li className="site-header__nav-item site-header__nav-item--has-menu">
               <a href="/">About Us</a>
+              <div className="design-menu about-menu" aria-label="About menu">
+                <div className="design-menu__group">
+                  <h3><a href="/">Our Story</a></h3>
+                  <ul>
+                    <li><a href="/">Team</a></li>
+                    <li><a href="/">Approach</a></li>
+                  </ul>
+                </div>
+              </div>
             </li>
             <li className="site-header__nav-item">
               <a href="/">Contact Us</a>
@@ -484,9 +494,29 @@ function App() {
               </div>
             </div>
 
-            <div className="mobile-menu-modal__nav-item">
-              <a href="/">About Us</a>
-              <span className="mobile-menu-modal__chevron" aria-hidden="true" />
+            <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.about ? 'mobile-menu-modal__nav-section--open' : ''}`}>
+              <div className="mobile-menu-modal__nav-item">
+                <a href="/">About Us</a>
+                <button
+                  className="mobile-menu-modal__chevron-button"
+                  type="button"
+                  aria-label={`${mobileNavOpenSections.about ? 'Collapse' : 'Expand'} About Us menu`}
+                  aria-expanded={mobileNavOpenSections.about}
+                  onClick={() => toggleMobileNavSection('about')}
+                >
+                  <span className="mobile-menu-modal__chevron" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="mobile-menu-modal__submenu">
+                <div className="mobile-menu-modal__submenu-group">
+                  <h3><a href="/">Our Story</a></h3>
+                  <ul>
+                    <li><a href="/">Team</a></li>
+                    <li><a href="/">Approach</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <div className="mobile-menu-modal__nav-item">

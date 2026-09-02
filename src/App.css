@@ -140,6 +140,11 @@
   min-width: 580px;
 }
 
+.about-menu {
+  grid-template-columns: 1fr;
+  min-width: 200px;
+}
+
 .design-menu__group h3,
 .site-header__nav .design-menu__group h3 {
   margin: 0 0 14px;
@@ -149,6 +154,19 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #333;
+}
+
+.design-menu__group h3 a,
+.mobile-menu-modal__submenu-group h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.design-menu__group h3 a:hover,
+.design-menu__group h3 a:focus-visible,
+.mobile-menu-modal__submenu-group h3 a:hover,
+.mobile-menu-modal__submenu-group h3 a:focus-visible {
+  text-decoration: underline;
 }
 
 .design-menu__group ul {
