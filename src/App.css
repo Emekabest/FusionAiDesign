@@ -597,6 +597,7 @@
   display: grid;
   gap: 22px;
   text-align: center;
+  background: #f7f5cf;
 }
 
 .room-cta__eyebrow {
