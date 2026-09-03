@@ -355,6 +355,35 @@
   flex-direction: column;
 }
 
+.service-card__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  box-sizing: border-box;
+  min-height: 46px;
+  margin-top: 24px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e1a15;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.service-card--inperson .service-card__button {
+  background: rgba(255, 251, 231, 0.98);
+}
+
+.service-card__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
+}
+
 .service-card--online {
   background: #459ac2;
 }
@@ -391,6 +420,10 @@
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.9);
 }
+
+  .service-card__button {
+    margin-top: 26px;
+  }
 
 .service-intro {
   max-width: 980px;
@@ -1194,6 +1227,16 @@
     max-width: 28ch;
     font-size: 0.84rem;
     line-height: 1.45;
+  }
+
+  .service-card__button {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 18px;
+    min-height: 40px;
+    padding: 0.7rem 0.95rem;
+    font-size: 0.82rem;
+    box-shadow: none;
   }
 
   .service-intro {

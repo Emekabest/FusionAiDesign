@@ -192,12 +192,11 @@
   color: rgba(31, 26, 20, 0.8);
 }
 
-.team-member-card__link {
+.team-member-card__readmore {
   display: inline-flex;
-  margin-top: 1.25rem;
+  margin: 1.25rem 0 0;
   color: #b13f2a;
   font-weight: 700;
-  text-decoration: none;
 }
 
 .team-page__story {

@@ -179,9 +179,7 @@ function TeamPage({ onHome, onContact }) {
             <p>
               Alice is a licensed Interior Designer with a Master of Architecture degree from Virginia Tech and a Bachelor of Science degree in Interior Design, followed by 25+ years of professional practice.
             </p>
-            <a className="team-member-card__link" href="https://www.fusionaidesign.com/contact" target="_blank" rel="noreferrer">
-              Read More
-            </a>
+            <p className="team-member-card__readmore">Read More</p>
           </div>
         </article>
 
@@ -197,9 +195,7 @@ function TeamPage({ onHome, onContact }) {
             <p>
               Elaine Donnelly is a Licensed Sr. Interior Designer at Fusion A.I. Design, holding a Bachelor of Fine Arts degree in Interior Design. Her proficiency in technology, extensive design experience, and her open communication manner are key to project coordination, leadership, and creativity in the studio.
             </p>
-            <a className="team-member-card__link" href="https://www.fusionaidesign.com/contact" target="_blank" rel="noreferrer">
-              Read More
-            </a>
+            <p className="team-member-card__readmore">Read More</p>
           </div>
         </article>
       </section>
@@ -986,6 +982,16 @@ function App() {
                 <p>
                   Create a polished, personal space with guided design help, thoughtful sourcing, and a clear plan from start to finish.
                 </p>
+                <a
+                  className="service-card__button"
+                  href="/contact"
+                  onClick={(event) => {
+                    event.preventDefault()
+                    navigateToPage('contact')
+                  }}
+                >
+                  Take the Style Quiz
+                </a>
               </div>
             </article>
 
@@ -1010,6 +1016,16 @@ function App() {
                 <p>
                   Work directly with a designer in your home for styling, planning, and room-by-room support that feels highly customized.
                 </p>
+                <a
+                  className="service-card__button"
+                  href="/contact"
+                  onClick={(event) => {
+                    event.preventDefault()
+                    navigateToPage('contact')
+                  }}
+                >
+                  Meet with a Designer
+                </a>
               </div>
             </article>
           </section>
