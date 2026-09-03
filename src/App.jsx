@@ -1372,7 +1372,7 @@ function App() {
         </div>
 
         <div className="site-footer__legal">
-          <p>© 2026 Fusion Aid Design. All Rights Reserved.</p>
+          <p>© 2026 Fusion AI Design. All Rights Reserved.</p>
 
           <div className="site-footer__legal-links">
             <span>Find us in the App Store</span>
