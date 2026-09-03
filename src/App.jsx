@@ -51,7 +51,7 @@ const portfolioProjects = [
   },
   {
     title: 'Embassy Suites Halcyon',
-    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802485973-RAIWYUVCBE3M4LWWYE41/01-Guest+Reception.jpg?format=750w',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802685973-RAIWYUVCBE3M4LWWYE41/01-Guest+Reception.jpg?format=750w',
   },
   {
     title: 'AC Hotel Durham NC',
