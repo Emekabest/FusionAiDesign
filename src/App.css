@@ -1035,12 +1035,11 @@
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
   }
 
-  .mobile-menu-modal__socials svg {
+  .mobile-menu-modal__socials-row img {
     width: 20px;
     height: 20px;
-    fill: currentColor;
-    stroke: currentColor;
-    stroke-width: 1.6;
+    object-fit: contain;
+    display: block;
   }
 
   .hero-stage {

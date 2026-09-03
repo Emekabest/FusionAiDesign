@@ -6,37 +6,26 @@ import lobbyTwoImage from '../assets/Lobby2.jpeg'
 import lobbyThreeImage from '../assets/Lobby3.jpg'
 import aliceImage from '../assets/Alice.jpg'
 import elaineImage from '../assets/Elaine.jpg'
+import facebookLogo from '../assets/facebook.png'
+import instagramLogo from '../assets/instagram.png'
+import linkedinLogo from '../assets/linkedin.png'
 import { useEffect, useState } from 'react'
 
 const socialLinks = [
   {
     name: 'Facebook',
     url: 'https://www.facebook.com/fusionaidesigninc/',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M14 8.5V7c0-.7.5-1 1-1h2V3h-3c-2.2 0-3 1.8-3 3.5v2H9v3h2v9h3v-9h2.6l.4-3H14Z" />
-      </svg>
-    ),
+    icon: facebookLogo,
   },
   {
     name: 'Instagram',
     url: 'https://www.instagram.com/fusionaidesign/?hl=en',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="4" y="4" width="16" height="16" rx="4" ry="4" />
-        <circle cx="12" cy="12" r="4" fill="none" />
-        <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
-      </svg>
-    ),
+    icon: instagramLogo,
   },
   {
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/company/fusion-architectural-interior-design/',
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 9h3v10H5V9Zm1.5-5A1.5 1.5 0 1 1 5 5.5 1.5 1.5 0 0 1 6.5 4ZM10 9h3v1.4c.4-.8 1.4-1.7 3.1-1.7 3 0 3.9 2 3.9 4.8V19h-3v-4.2c0-1.4 0-3.2-2-3.2s-2.3 1.6-2.3 3.1V19h-3V9Z" />
-      </svg>
-    ),
+    icon: linkedinLogo,
   },
 ]
 
@@ -746,7 +735,7 @@ function App() {
                   rel="noreferrer"
                   title={socialLink.name}
                 >
-                  {socialLink.icon}
+                  <img src={socialLink.icon} alt="" aria-hidden="true" />
                 </a>
               ))}
             </div>
