@@ -24,6 +24,7 @@
   position: relative;
   z-index: 1;
   width: min(1180px, calc(100% - 2rem));
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 9rem 0 5rem;
   color: #fff;
@@ -75,6 +76,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   min-height: 48px;
   padding: 0.85rem 1.3rem;
   border-radius: 999px;
@@ -210,11 +212,13 @@
   .portfolio-page__actions {
     flex-direction: column;
     align-items: stretch;
+    width: 100%;
   }
 
   .portfolio-page__secondary-button,
   .portfolio-page__primary-button {
     width: 100%;
+    max-width: 100%;
   }
 
   .portfolio-page__intro {
