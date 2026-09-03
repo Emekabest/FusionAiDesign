@@ -1116,6 +1116,60 @@ function App() {
             </div>
           </section>
 
+          <section
+            className="fusion-promise"
+            style={{ backgroundImage: `url(${lobbyOneImage})` }}
+            aria-label="The Fusion Promise"
+          >
+            <div className="fusion-promise__overlay" />
+            <div className="fusion-promise__content">
+              <h2>The Fusion Promise</h2>
+              <div className="fusion-promise__grid">
+                <div className="fusion-promise__item">
+                  <div className="fusion-promise__icon-wrap">
+                    <img
+                      src="https://cdn.sanity.io/images/k02gtkzy/production/cf50513e5d5fe988d1356d9d02df18e0d68a0ae6-76x77.svg"
+                      alt="Happiness guarantee icon"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="fusion-promise__text-wrap">
+                    <h3>Happiness guaranteed</h3>
+                    <p>Love your design or it’s free.</p>
+                  </div>
+                </div>
+
+                <div className="fusion-promise__item">
+                  <div className="fusion-promise__icon-wrap">
+                    <img
+                      src="https://cdn.sanity.io/images/k02gtkzy/production/982f8f4044b4997828cd68fce983cdd1daef44a7-71x65.svg"
+                      alt="Designer help on demand icon"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="fusion-promise__text-wrap">
+                    <h3>Designer help, on demand</h3>
+                    <p>Talk to a real human whenever you need it.</p>
+                  </div>
+                </div>
+
+                <div className="fusion-promise__item">
+                  <div className="fusion-promise__icon-wrap">
+                    <img
+                      src="https://cdn.sanity.io/images/k02gtkzy/production/1ac8317c9df47e9575cf2d5f80d8800c4c65e1bf-100x74.svg"
+                      alt="Members-only prices icon"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="fusion-promise__text-wrap">
+                    <h3>Members-only prices</h3>
+                    <p>Exclusive discounts on hundreds of brands.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <section className="meet-team" aria-label="Meet the team">
             <div className="meet-team__intro">
               <p className="meet-team__eyebrow">Meet the Team</p>
