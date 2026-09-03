@@ -1,4 +1,5 @@
 import './App.css'
+import './ContactPage.css'
 import heroVideo from '../assets/media.mp4'
 import lobbyOneImage from '../assets/Lobby1.jpg'
 import lobbyTwoImage from '../assets/Lobby2.jpeg'
@@ -7,7 +8,114 @@ import aliceImage from '../assets/Alice.jpg'
 import elaineImage from '../assets/Elaine.jpg'
 import { useEffect, useState } from 'react'
 
+function ContactPage({ onBack }) {
+  return (
+    <main className="contact-page" aria-label="Contact Us page">
+      <section className="contact-page__hero">
+        <div className="contact-page__hero-copy">
+          <p className="contact-page__eyebrow">Contact Us</p>
+          <h1>Start your project with a conversation.</h1>
+          <p>
+            Based in Atlanta, Georgia serving the united States.
+          </p>
+        </div>
+
+        <div className="contact-page__details-card">
+          <p className="contact-page__details-label">Studio</p>
+          <h2>4595 Towne Lake Pkwy Bldg. 100</h2>
+          <p className="contact-page__address-line">Suite 120 Woodstock, GA 30189</p>
+          <p className="contact-page__phone">770.485.5086</p>
+          <a
+            className="contact-page__map-link"
+            href="https://maps.google.com/maps?ll=34.130044,-84.574455&z=12&t=m&hl=en&gl=US&mapclient=apiv3"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open in Google Maps
+          </a>
+        </div>
+      </section>
+
+      <section className="contact-page__content">
+        <aside className="contact-page__info-panel">
+          <p className="contact-page__info-eyebrow">Tell us about your space</p>
+          <h2>We&apos;ll help you shape the plan, the pace, and the finish.</h2>
+          <p>
+            Share a few details and we&apos;ll get back to you with a clear next step. The form is designed to keep the process simple, direct, and easy to review.
+          </p>
+          <button className="contact-page__back" type="button" onClick={onBack}>
+            Back to Home
+          </button>
+        </aside>
+
+        <form className="contact-form" onSubmit={(event) => event.preventDefault()}>
+          <div className="contact-form__grid">
+            <label className="contact-form__field contact-form__field--full">
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" />
+            </label>
+
+            <label className="contact-form__field">
+              <span>Email Address(required)</span>
+              <input type="email" name="email" required placeholder="you@example.com" />
+            </label>
+
+            <label className="contact-form__field">
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="(555) 555-5555" />
+            </label>
+
+            <label className="contact-form__field contact-form__field--full">
+              <span>Where is your project located?</span>
+              <input type="text" name="location" placeholder="City, state, or ZIP" />
+            </label>
+
+            <label className="contact-form__field">
+              <span>Property Type</span>
+              <select name="propertyType" defaultValue="">
+                <option value="" disabled>Select an option</option>
+                <option value="commercial">Commercial</option>
+                <option value="residential">Residential</option>
+              </select>
+            </label>
+
+            <label className="contact-form__field">
+              <span>Project Type</span>
+              <select name="projectType" defaultValue="">
+                <option value="" disabled>Select an option</option>
+                <option value="new-construction">New Construction</option>
+                <option value="renovation">Renovation</option>
+              </select>
+            </label>
+
+            <label className="contact-form__field contact-form__field--full">
+              <span>Describe Project Scope</span>
+              <textarea name="scope" rows="5" placeholder="Tell us about the rooms, goals, and timeline."></textarea>
+            </label>
+
+            <label className="contact-form__field contact-form__field--full">
+              <span>How did you hear about us?(required)</span>
+              <input type="text" name="referral" required placeholder="Friend, Instagram, search, etc." />
+            </label>
+          </div>
+
+          <button className="site-header__getstarted contact-form__submit" type="submit">
+            Submit
+          </button>
+        </form>
+      </section>
+    </main>
+  )
+}
+
 function App() {
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (typeof window === 'undefined') {
+      return 'home'
+    }
+
+    return window.location.pathname === '/contact' ? 'contact' : 'home'
+  })
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardsOverlapHero, setCardsOverlapHero] = useState(false)
   const [headerSolid, setHeaderSolid] = useState(false)
@@ -52,6 +160,16 @@ function App() {
     }))
   }
 
+  const navigateToPage = (pageName) => {
+    setCurrentPage(pageName)
+    setMenuOpen(false)
+
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', pageName === 'contact' ? '/contact' : '/')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   const testimonials = [
     {
       name: 'Ava M.',
@@ -76,6 +194,15 @@ function App() {
   ]
 
   useEffect(() => {
+    const handlePopState = () => {
+      if (typeof window === 'undefined') {
+        return
+      }
+
+      setCurrentPage(window.location.pathname === '/contact' ? 'contact' : 'home')
+      setMenuOpen(false)
+    }
+
     const handleScroll = () => {
       setCardsOverlapHero(window.scrollY > 24)
       setHeaderSolid(window.innerWidth > 720 && window.scrollY > window.innerHeight - 48)
@@ -84,17 +211,21 @@ function App() {
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('resize', handleScroll)
+    window.addEventListener('popstate', handlePopState)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleScroll)
+      window.removeEventListener('popstate', handlePopState)
     }
   }, [])
 
+  const isContactPage = currentPage === 'contact'
+
   return (
     <>
-      <header className={`site-header ${headerSolid ? 'site-header--solid' : ''} ${menuOpen ? 'site-header--open' : ''}`}>
-        <a className="site-header__brand" href="/" aria-label="Fusion Home">
+      <header className={`site-header ${(headerSolid || isContactPage) ? 'site-header--solid' : ''} ${menuOpen ? 'site-header--open' : ''}`}>
+        <a className="site-header__brand" href="/" aria-label="Fusion Home" onClick={(event) => { event.preventDefault(); navigateToPage('home') }}>
           <img
             src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/3f0bb9e3-71eb-4f35-b164-32c0d3e3a381/Fusion%2BFINALLogo-2022-Color.png"
             alt="Fusion"
@@ -267,7 +398,15 @@ function App() {
               </div>
             </li>
             <li className="site-header__nav-item">
-              <a href="/">Contact Us</a>
+              <a
+                href="/contact"
+                onClick={(event) => {
+                  event.preventDefault()
+                  navigateToPage('contact')
+                }}
+              >
+                Contact Us
+              </a>
             </li>
           </ul>
         </nav>
@@ -528,7 +667,15 @@ function App() {
             </div>
 
             <div className="mobile-menu-modal__nav-item">
-              <a href="/">Contact Us</a>
+              <a
+                href="/contact"
+                onClick={(event) => {
+                  event.preventDefault()
+                  navigateToPage('contact')
+                }}
+              >
+                Contact Us
+              </a>
               <span className="mobile-menu-modal__chevron" aria-hidden="true" />
             </div>
           </nav>
@@ -557,212 +704,212 @@ function App() {
         </div>
       </div>
 
-      <main className="hero-stage" aria-label="Hero background">
-        <div className="hero-stage__overlay" aria-hidden="true" />
+      {isContactPage ? (
+        <ContactPage onBack={() => navigateToPage('home')} />
+      ) : (
+        <>
+          <main className="hero-stage" aria-label="Hero background">
+            <div className="hero-stage__overlay" aria-hidden="true" />
 
-        <div className="hero-stage__content">
-          <h1>Spaces that inspire</h1>
-          <p>
-            Thoughtful interiors designed to shape
-            <br />
-            memorable experiences.
-          </p>
-          <a className="site-header__getstarted hero-stage__getstarted" href="/">
-            GetStarted
-          </a>
-        </div>
+            <div className="hero-stage__content">
+              <h1>Spaces that inspire</h1>
+              <p>
+                Thoughtful interiors designed to shape
+                <br />
+                memorable experiences.
+              </p>
+              <a className="site-header__getstarted hero-stage__getstarted" href="/">
+                GetStarted
+              </a>
+            </div>
 
-        <video
-          className="hero-stage__media"
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-      </main>
-
-      <section
-        className={`service-cards ${cardsOverlapHero ? 'service-cards--overlap' : ''}`}
-        aria-label="Interior design services"
-      >
-        <article className={`service-card service-card--online ${serviceCardOpen.online ? 'service-card--open' : ''}`}>
-          <div className="service-card__mobile-header">
-            <span className="service-card__mobile-label">Online</span>
-            <button
-              className="service-card__toggle"
-              type="button"
-              aria-label={`${serviceCardOpen.online ? 'Collapse' : 'Expand'} online interior design services`}
-              aria-expanded={serviceCardOpen.online}
-              onClick={() => toggleServiceCard('online')}
+            <video
+              className="hero-stage__media"
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden="true"
             >
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-            </button>
-          </div>
+              <source src={heroVideo} type="video/mp4" />
+            </video>
+          </main>
 
-          <div className="service-card__body">
-            <p className="service-card__eyebrow">Online Interior Design Services</p>
-            <h2>Modern design support from anywhere.</h2>
-            <p>
-              Create a polished, personal space with guided design help, thoughtful sourcing, and a clear plan from start to finish.
-            </p>
-          </div>
-        </article>
+          <section
+            className={`service-cards ${cardsOverlapHero ? 'service-cards--overlap' : ''}`}
+            aria-label="Interior design services"
+          >
+            <article className={`service-card service-card--online ${serviceCardOpen.online ? 'service-card--open' : ''}`}>
+              <div className="service-card__mobile-header">
+                <span className="service-card__mobile-label">Online</span>
+                <button
+                  className="service-card__toggle"
+                  type="button"
+                  aria-label={`${serviceCardOpen.online ? 'Collapse' : 'Expand'} online interior design services`}
+                  aria-expanded={serviceCardOpen.online}
+                  onClick={() => toggleServiceCard('online')}
+                >
+                  <span aria-hidden="true" />
+                  <span aria-hidden="true" />
+                </button>
+              </div>
 
-        <article className={`service-card service-card--inperson ${serviceCardOpen.inperson ? 'service-card--open' : ''}`}>
-          <div className="service-card__mobile-header">
-            <span className="service-card__mobile-label">In Person</span>
-            <button
-              className="service-card__toggle"
-              type="button"
-              aria-label={`${serviceCardOpen.inperson ? 'Collapse' : 'Expand'} in-person interior design services`}
-              aria-expanded={serviceCardOpen.inperson}
-              onClick={() => toggleServiceCard('inperson')}
-            >
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-            </button>
-          </div>
+              <div className="service-card__body">
+                <p className="service-card__eyebrow">Online Interior Design Services</p>
+                <h2>Modern design support from anywhere.</h2>
+                <p>
+                  Create a polished, personal space with guided design help, thoughtful sourcing, and a clear plan from start to finish.
+                </p>
+              </div>
+            </article>
 
-          <div className="service-card__body">
-            <p className="service-card__eyebrow">In-Person Interior Design Services</p>
-            <h2>Hands-on design for a more tailored experience.</h2>
-            <p>
-              Work directly with a designer in your home for styling, planning, and room-by-room support that feels highly customized.
-            </p>
-          </div>
-        </article>
-      </section>
+            <article className={`service-card service-card--inperson ${serviceCardOpen.inperson ? 'service-card--open' : ''}`}>
+              <div className="service-card__mobile-header">
+                <span className="service-card__mobile-label">In Person</span>
+                <button
+                  className="service-card__toggle"
+                  type="button"
+                  aria-label={`${serviceCardOpen.inperson ? 'Collapse' : 'Expand'} in-person interior design services`}
+                  aria-expanded={serviceCardOpen.inperson}
+                  onClick={() => toggleServiceCard('inperson')}
+                >
+                  <span aria-hidden="true" />
+                  <span aria-hidden="true" />
+                </button>
+              </div>
 
-      <section className="service-intro" aria-label="Design room count overview">
-        <p className="service-intro__eyebrow">Over 2 million room designs and counting.</p>
-        <h2>Transform your home with one of our talented designers.</h2>
-      </section>
+              <div className="service-card__body">
+                <p className="service-card__eyebrow">In-Person Interior Design Services</p>
+                <h2>Hands-on design for a more tailored experience.</h2>
+                <p>
+                  Work directly with a designer in your home for styling, planning, and room-by-room support that feels highly customized.
+                </p>
+              </div>
+            </article>
+          </section>
 
-      <section className="lobby-cards" aria-label="Lobby design cards">
-        <article className="lobby-card">
-          <div className="lobby-card__image-wrap">
-            <img src={lobbyOneImage} alt="Lobby design inspiration one" />
-          </div>
-          <div className="lobby-card__content">
-            <h3>Design Your Timeline</h3>
-            <p>
-              Start when you are ready and move at a pace that fits your life, with guidance that keeps every step simple.
-            </p>
-          </div>
-        </article>
+          <section className="service-intro" aria-label="Design room count overview">
+            <p className="service-intro__eyebrow">Over 2 million room designs and counting.</p>
+            <h2>Transform your home with one of our talented designers.</h2>
+          </section>
 
-        <article className="lobby-card">
-          <div className="lobby-card__image-wrap">
-            <img src={lobbyTwoImage} alt="Lobby design inspiration two" />
-          </div>
-          <div className="lobby-card__content">
-            <h3>Bring Your Inspiration</h3>
-            <p>
-              Share the ideas, colors, and references you love, and let a designer shape them into a cohesive space.
-            </p>
-          </div>
-        </article>
+          <section className="lobby-cards" aria-label="Lobby design cards">
+            <article className="lobby-card">
+              <div className="lobby-card__image-wrap">
+                <img src={lobbyOneImage} alt="Lobby design inspiration one" />
+              </div>
+              <div className="lobby-card__content">
+                <h3>Design Your Timeline</h3>
+                <p>
+                  Start when you are ready and move at a pace that fits your life, with guidance that keeps every step simple.
+                </p>
+              </div>
+            </article>
 
-        <article className="lobby-card">
-          <div className="lobby-card__image-wrap">
-            <img src={lobbyThreeImage} alt="Lobby design inspiration three" />
-          </div>
-          <div className="lobby-card__content">
-            <h3>Shop at the Best Prices</h3>
-            <p>
-              Discover thoughtful options and well-priced pieces that help you complete the room without losing style.
-            </p>
-          </div>
-        </article>
-      </section>
+            <article className="lobby-card">
+              <div className="lobby-card__image-wrap">
+                <img src={lobbyTwoImage} alt="Lobby design inspiration two" />
+              </div>
+              <div className="lobby-card__content">
+                <h3>Bring Your Inspiration</h3>
+                <p>
+                  Share the ideas, colors, and references you love, and let a designer shape them into a cohesive space.
+                </p>
+              </div>
+            </article>
 
-      <section className="testimonials" aria-label="Customer testimonials">
-        <div className="testimonials__heading">
-          <p className="testimonials__eyebrow">Review Spotlight</p>
-          <h2>Real Reviews</h2>
-        </div>
+            <article className="lobby-card">
+              <div className="lobby-card__image-wrap">
+                <img src={lobbyThreeImage} alt="Lobby design inspiration three" />
+              </div>
+              <div className="lobby-card__content">
+                <h3>Shop at the Best Prices</h3>
+                <p>
+                  Discover thoughtful options and well-priced pieces that help you complete the room without losing style.
+                </p>
+              </div>
+            </article>
+          </section>
 
-        <div className="testimonials__viewport">
-          <div className="testimonials__track">
-            {testimonials.map((testimonial, index) => (
-              <article
-                className="testimonial-card"
-                key={`${testimonial.name}-${index}`}
-              >
-                <h3>{testimonial.name}</h3>
+          <section className="testimonials" aria-label="Customer testimonials">
+            <div className="testimonials__heading">
+              <p className="testimonials__eyebrow">Review Spotlight</p>
+              <h2>Real Reviews</h2>
+            </div>
 
-                <div className="testimonial-card__stars" aria-label="Five star rating">
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <svg key={starIndex} viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12 2.4l2.83 5.74 6.34.92-4.59 4.48 1.08 6.31L12 16.95l-5.66 2.9 1.08-6.31-4.59-4.48 6.34-.92L12 2.4Z" />
-                    </svg>
-                  ))}
+            <div className="testimonials__viewport">
+              <div className="testimonials__track">
+                {testimonials.map((testimonial, index) => (
+                  <article
+                    className="testimonial-card"
+                    key={`${testimonial.name}-${index}`}
+                  >
+                    <h3>{testimonial.name}</h3>
+
+                    <div className="testimonial-card__stars" aria-label="Five star rating">
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <svg key={starIndex} viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2.4l2.83 5.74 6.34.92-4.59 4.48 1.08 6.31L12 16.95l-5.66 2.9 1.08-6.31-4.59-4.48 6.34-.92L12 2.4Z" />
+                        </svg>
+                      ))}
+                    </div>
+
+                    <p>{testimonial.quote}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="meet-team" aria-label="Meet the team">
+            <div className="meet-team__intro">
+              <p className="meet-team__eyebrow">Meet the Team</p>
+              <h2>Meet the people shaping every project.</h2>
+              <p>
+                Fusion A.I. Design brings together experienced leadership and hands-on project coordination to keep every design thoughtful, responsive, and personal.
+              </p>
+            </div>
+
+            <div className="meet-team__members">
+              <article className="team-member-card">
+                <div className="team-member-card__image-wrap">
+                  <img src={aliceImage} alt="Alice Joseph-Limer" />
                 </div>
-
-                <p>{testimonial.quote}</p>
+                <div className="team-member-card__content">
+                  <p className="team-member-card__role">ALICE JOSEPH-LIMER | FOUNDING PRINCIPAL &amp; CEO</p>
+                  <h3>Alice Joseph-Limer</h3>
+                  <p>
+                    Alice is a licensed Interior Designer with a Master of Architecture degree from Virginia Tech and a Bachelor of Science degree in Interior Design, followed by 25+ years of professional practice.
+                  </p>
+                </div>
               </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="meet-team" aria-label="Meet the team">
-        <div className="meet-team__intro">
-          <p className="meet-team__eyebrow">Meet the Team</p>
-          <h2>Meet the people shaping every project.</h2>
-          <p>
-            Fusion A.I. Design brings together experienced leadership and hands-on project coordination to keep every design thoughtful, responsive, and personal.
-          </p>
-        </div>
-
-        <div className="meet-team__members">
-          <article className="team-member-card">
-            <div className="team-member-card__image-wrap">
-              <img src={aliceImage} alt="Alice Joseph-Limer" />
+              <article className="team-member-card">
+                <div className="team-member-card__image-wrap">
+                  <img src={elaineImage} alt="Elaine Donnelly" />
+                </div>
+                <div className="team-member-card__content">
+                  <p className="team-member-card__role">ELAINE DONNELLY | ASSOCIATE &amp; PROJECT MANAGER</p>
+                  <h3>Elaine Donnelly</h3>
+                  <p>
+                    Elaine Donnelly is a Licensed Sr. Interior Designer at Fusion A.I. Design, holding a Bachelor of Fine Arts degree in Interior Design. Her proficiency in technology, extensive design experience, and her open communication manner are key to project coordination, leadership, and creativity in the studio.
+                  </p>
+                </div>
+              </article>
             </div>
-            <div className="team-member-card__content">
-              <p className="team-member-card__role">ALICE JOSEPH-LIMER | FOUNDING PRINCIPAL &amp; CEO</p>
-              <h3>Alice Joseph-Limer</h3>
-              <p>
-                Alice is a licensed Interior Designer with a Master of Architecture degree from Virginia Tech and a Bachelor of Science degree in Interior Design, followed by 25+ years of professional practice.
-              </p>
-            </div>
-          </article>
+          </section>
 
-          <article className="team-member-card">
-            <div className="team-member-card__image-wrap">
-              <img src={elaineImage} alt="Elaine Donnelly" />
-            </div>
-            <div className="team-member-card__content">
-              <p className="team-member-card__role">ELAINE DONNELLY | ASSOCIATE &amp; PROJECT MANAGER</p>
-              <h3>Elaine Donnelly</h3>
-              <p>
-                Elaine Donnelly is a Licensed Sr. Interior Designer at Fusion A.I. Design, holding a Bachelor of Fine Arts degree in Interior Design. Her proficiency in technology, extensive design experience, and her open communication manner are key to project coordination, leadership, and creativity in the studio.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="room-cta" aria-label="Get started call to action">
-        <p className="room-cta__eyebrow">Your room, your way. Let&apos;s get started.</p>
-        <p className="room-cta__body">
-          Take the quiz, get matched, and build a plan you can shop at your own pace. The best part? Seeing it all come to life.
-        </p>
-        <a className="site-header__getstarted room-cta__button" href="/">
-          Get Started
-        </a>
-      </section>
-
-
-
-    
-
-
+          <section className="room-cta" aria-label="Get started call to action">
+            <p className="room-cta__eyebrow">Your room, your way. Let&apos;s get started.</p>
+            <p className="room-cta__body">
+              Take the quiz, get matched, and build a plan you can shop at your own pace. The best part? Seeing it all come to life.
+            </p>
+            <a className="site-header__getstarted room-cta__button" href="/">
+              Get Started
+            </a>
+          </section>
+        </>
+      )}
 
       <footer className="site-footer" aria-label="Site footer">
         <div className="site-footer__grid">
