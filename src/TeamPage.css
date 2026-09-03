@@ -1,0 +1,298 @@
+.team-page {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(239, 226, 176, 0.45), transparent 34%),
+    linear-gradient(180deg, #f7f2df 0%, #f5f0e0 38%, #efe7d1 100%);
+  color: #1e1a15;
+}
+
+.team-page::before,
+.team-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(12px);
+  opacity: 0.45;
+}
+
+.team-page::before {
+  inset: 8rem auto auto -4rem;
+  width: 16rem;
+  height: 16rem;
+  background: rgba(102, 104, 52, 0.16);
+}
+
+.team-page::after {
+  right: -2rem;
+  top: 26rem;
+  width: 14rem;
+  height: 14rem;
+  background: rgba(69, 154, 194, 0.14);
+}
+
+.team-page__hero,
+.team-page__members,
+.team-page__story,
+.team-page__values {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.team-page__hero {
+  display: grid;
+  gap: 1.25rem;
+  padding: 8rem 0 2rem;
+}
+
+.team-page__hero-copy,
+.team-page__hero-panel,
+.team-member-card,
+.team-page__story-panel,
+.team-value-card {
+  border: 1px solid rgba(30, 26, 21, 0.08);
+  box-shadow: 0 18px 48px rgba(59, 46, 28, 0.08);
+}
+
+.team-page__hero-copy {
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+}
+
+.team-page__eyebrow,
+.team-page__hero-panel-label,
+.team-member-card__eyebrow {
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6b6733;
+}
+
+.team-page__hero-copy h1,
+.team-page__hero-panel h2,
+.team-page__story-panel h2 {
+  margin: 0;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  color: #1f1a14;
+}
+
+.team-page__hero-copy h1 {
+  max-width: 11ch;
+  font-size: clamp(3rem, 6vw, 5.4rem);
+}
+
+.team-page__hero-copy p {
+  max-width: 58ch;
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(31, 26, 20, 0.8);
+}
+
+.team-page__hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.team-page__secondary-button,
+.team-page__primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.team-page__secondary-button {
+  border: 1px solid rgba(31, 26, 20, 0.16);
+  background: rgba(255, 255, 255, 0.82);
+  color: #1f1a14;
+}
+
+.team-page__primary-button {
+  background: #459ac2;
+  color: #fff;
+  box-shadow: 0 16px 30px rgba(69, 154, 194, 0.24);
+}
+
+.team-page__secondary-button:hover,
+.team-page__primary-button:hover,
+.team-member-card__link:hover {
+  transform: translateY(-2px);
+}
+
+.team-page__hero-panel {
+  border-radius: 28px;
+  padding: 1.75rem;
+  background: linear-gradient(180deg, #6b6733 0%, #575428 100%);
+  color: #fffbe7;
+}
+
+.team-page__hero-panel h2,
+.team-page__story-panel h2 {
+  font-size: clamp(1.9rem, 3vw, 3rem);
+}
+
+.team-page__hero-panel p,
+.team-page__story-panel p,
+.team-member-card__body p,
+.team-value-card p {
+  line-height: 1.8;
+}
+
+.team-page__members {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1rem 0 2rem;
+}
+
+.team-member-card {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.team-member-card__image {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.team-member-card__body {
+  padding: 1.5rem;
+}
+
+.team-member-card__body h2 {
+  margin: 0;
+  font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.team-member-card__body p {
+  margin: 1rem 0 0;
+  color: rgba(31, 26, 20, 0.8);
+}
+
+.team-member-card__link {
+  display: inline-flex;
+  margin-top: 1.25rem;
+  color: #b13f2a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.team-page__story {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1rem 0 2rem;
+}
+
+.team-page__story-panel {
+  border-radius: 28px;
+  padding: 1.75rem;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.team-page__story-panel--accent {
+  background: linear-gradient(180deg, #459ac2 0%, #2f7f9f 100%);
+  color: #f7fbfd;
+}
+
+.team-page__story-panel--accent .team-page__eyebrow {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.team-page__values {
+  display: grid;
+  gap: 1rem;
+  padding: 0 0 4rem;
+}
+
+.team-value-card {
+  border-radius: 24px;
+  padding: 1.35rem 1.25rem;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.team-value-card h3 {
+  margin: 0 0 0.75rem;
+  color: #6b6733;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.team-value-card p {
+  margin: 0;
+  color: rgba(31, 26, 20, 0.8);
+}
+
+@media (min-width: 760px) {
+  .team-page__hero {
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+    align-items: stretch;
+    padding-top: 9.5rem;
+  }
+
+  .team-member-card {
+    grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .team-member-card--reverse {
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  }
+
+  .team-member-card--reverse .team-member-card__image {
+    order: 2;
+  }
+
+  .team-member-card--reverse .team-member-card__body {
+    order: 1;
+  }
+
+  .team-page__story {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  }
+
+  .team-page__values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .team-value-card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1080px) {
+  .team-page__hero-copy,
+  .team-page__hero-panel,
+  .team-member-card__body,
+  .team-page__story-panel,
+  .team-value-card {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .team-member-card__image {
+    height: 420px;
+    object-position: center 12%;
+  }
+}

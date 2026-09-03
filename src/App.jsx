@@ -1,5 +1,6 @@
 import './App.css'
 import './ContactPage.css'
+import './TeamPage.css'
 import heroVideo from '../assets/media.mp4'
 import lobbyOneImage from '../assets/Lobby1.jpg'
 import lobbyTwoImage from '../assets/Lobby2.jpeg'
@@ -129,13 +130,143 @@ function ContactPage({ onBack }) {
   )
 }
 
+function TeamPage({ onHome, onContact }) {
+  return (
+    <main className="team-page" aria-label="The Team page">
+      <section className="team-page__hero">
+        <div className="team-page__hero-copy">
+          <p className="team-page__eyebrow">The Team</p>
+          <h1>People, process, and design working together.</h1>
+          <p>
+            Since 2003, Fusion A.I. Design has been a values-driven Architectural Interior Design firm committed to bringing innovative design to the realization of interior space in the domestic and international marketplaces.
+          </p>
+          <div className="team-page__hero-actions">
+            <button className="team-page__secondary-button" type="button" onClick={onHome}>
+              Back to Home
+            </button>
+            <a
+              className="team-page__primary-button"
+              href="/contact"
+              onClick={(event) => {
+                event.preventDefault()
+                onContact()
+              }}
+            >
+              Schedule A Phone Consultation
+            </a>
+          </div>
+        </div>
+
+        <aside className="team-page__hero-panel">
+          <p className="team-page__hero-panel-label">Our approach</p>
+          <h2>Integrated design, procurement, and project delivery.</h2>
+          <p>
+            We bring together the combined knowledge and expertise of the entire team to ensure the success of your project while maintaining the original design intent.
+          </p>
+        </aside>
+      </section>
+
+      <section className="team-page__members" aria-label="Team members">
+        <article className="team-member-card">
+          <img
+            className="team-member-card__image"
+            src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1632774475686-ABV2K34JEV0MRU88DSKX/DSC_1070-AliceJL_headshot_BFP.jpg"
+            alt="Alice Joseph-Limer headshot"
+          />
+          <div className="team-member-card__body">
+            <p className="team-member-card__eyebrow">Founding Principal &amp; CEO</p>
+            <h2>ALICE JOSEPH-LIMER | FOUNDING PRINCIPAL &amp; CEO</h2>
+            <p>
+              Alice is a licensed Interior Designer with a Master of Architecture degree from Virginia Tech and a Bachelor of Science degree in Interior Design, followed by 25+ years of professional practice.
+            </p>
+            <a className="team-member-card__link" href="https://www.fusionaidesign.com/contact" target="_blank" rel="noreferrer">
+              Read More
+            </a>
+          </div>
+        </article>
+
+        <article className="team-member-card team-member-card--reverse">
+          <img
+            className="team-member-card__image"
+            src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1632774567558-KD5T4R857TCUM7VS5T0P/DSC_8169-ElaineD_headshot_BFP.jpg"
+            alt="Elaine Donnelly headshot"
+          />
+          <div className="team-member-card__body">
+            <p className="team-member-card__eyebrow">Associate &amp; Project Manager</p>
+            <h2>ELAINE DONNELLY | ASSOCIATE &amp; PROJECT MANAGER</h2>
+            <p>
+              Elaine Donnelly is a Licensed Sr. Interior Designer at Fusion A.I. Design, holding a Bachelor of Fine Arts degree in Interior Design. Her proficiency in technology, extensive design experience, and her open communication manner are key to project coordination, leadership, and creativity in the studio.
+            </p>
+            <a className="team-member-card__link" href="https://www.fusionaidesign.com/contact" target="_blank" rel="noreferrer">
+              Read More
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <section className="team-page__story">
+        <div className="team-page__story-panel">
+          <p className="team-page__eyebrow">How we work</p>
+          <h2>Design, procurement, and delivery in one integrated process.</h2>
+          <p>
+            Because of our impeccable reputation and integrity, there was significant client demand to extend our services to provide FFA procurement. As a result, in 2016 FAID Procurement became an integral part of our project delivery services.
+          </p>
+          <p>
+            We bring the same integrated approach to procurement and provide clients a more simplified, one-stop delivery approach.
+          </p>
+        </div>
+
+        <div className="team-page__story-panel team-page__story-panel--accent">
+          <p className="team-page__eyebrow">Our Mission</p>
+          <h2>To deliver thoughtful and cost-effective design solutions with a nuanced narrative that achieves our Client’s project vision and goals.</h2>
+        </div>
+      </section>
+
+      <section className="team-page__values" aria-label="Our values">
+        <article className="team-value-card">
+          <h3>DO THE RIGHT THING</h3>
+          <p>Work and Live with Integrity and Honesty. Simply put, we follow through on what we say and stand behind what we do.</p>
+        </article>
+
+        <article className="team-value-card">
+          <h3>LOVE WHAT YOU DO</h3>
+          <p>Our team’s shared passion to create beautiful spaces, solve complex problems, do excellent work, and serve others, is what drives the energy in everything we do.</p>
+        </article>
+
+        <article className="team-value-card">
+          <h3>WORK TOGETHER</h3>
+          <p>Collaboration maximizes team expertise and energy to yield the most cohesive results, ensuring the success of your project.</p>
+        </article>
+
+        <article className="team-value-card">
+          <h3>KEEP IT SIMPLE</h3>
+          <p>Life is complex, working with a designer shouldn’t be. We provide streamlined delivery processes to exceed Client and Brand expectations in communication, documentation, and procurement.</p>
+        </article>
+
+        <article className="team-value-card">
+          <h3>DO IT BETTER</h3>
+          <p>Create transformative experiences for those we serve. Our design solutions deliver inspired places that foster human well-being, functional efficiency, and client satisfaction.</p>
+        </article>
+      </section>
+    </main>
+  )
+}
+
 function App() {
   const [currentPage, setCurrentPage] = useState(() => {
     if (typeof window === 'undefined') {
       return 'home'
     }
 
-    return window.location.pathname === '/contact' ? 'contact' : 'home'
+    if (window.location.pathname === '/contact') {
+      return 'contact'
+    }
+
+    if (window.location.pathname === '/team') {
+      return 'team'
+    }
+
+    return 'home'
   })
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardsOverlapHero, setCardsOverlapHero] = useState(false)
@@ -186,7 +317,7 @@ function App() {
     setMenuOpen(false)
 
     if (typeof window !== 'undefined') {
-      window.history.pushState({}, '', pageName === 'contact' ? '/contact' : '/')
+      window.history.pushState({}, '', pageName === 'contact' ? '/contact' : pageName === 'team' ? '/team' : '/')
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
@@ -220,7 +351,19 @@ function App() {
         return
       }
 
-      setCurrentPage(window.location.pathname === '/contact' ? 'contact' : 'home')
+      if (window.location.pathname === '/contact') {
+        setCurrentPage('contact')
+        setMenuOpen(false)
+        return
+      }
+
+      if (window.location.pathname === '/team') {
+        setCurrentPage('team')
+        setMenuOpen(false)
+        return
+      }
+
+      setCurrentPage('home')
       setMenuOpen(false)
     }
 
@@ -262,10 +405,11 @@ function App() {
   }, [menuOpen])
 
   const isContactPage = currentPage === 'contact'
+  const isTeamPage = currentPage === 'team'
 
   return (
     <>
-      <header className={`site-header ${(headerSolid || isContactPage) ? 'site-header--solid' : ''} ${menuOpen ? 'site-header--open' : ''}`}>
+      <header className={`site-header ${(headerSolid || isContactPage || isTeamPage) ? 'site-header--solid' : ''} ${menuOpen ? 'site-header--open' : ''}`}>
         <a className="site-header__brand" href="/" aria-label="Fusion Home" onClick={(event) => { event.preventDefault(); navigateToPage('home') }}>
           <img
             src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/3f0bb9e3-71eb-4f35-b164-32c0d3e3a381/Fusion%2BFINALLogo-2022-Color.png"
@@ -427,12 +571,21 @@ function App() {
               </div>
             </li>
             <li className="site-header__nav-item site-header__nav-item--has-menu">
-              <a href="/">About Us</a>
+              <a href="/" onClick={(event) => {
+                event.preventDefault()
+                navigateToPage('team')
+              }}>About Us</a>
               <div className="design-menu about-menu" aria-label="About menu">
                 <div className="design-menu__group">
-                  <h3><a href="/">Our Story</a></h3>
+                  <h3><a href="/team" onClick={(event) => {
+                    event.preventDefault()
+                    navigateToPage('team')
+                  }}>Our Story</a></h3>
                   <ul>
-                    <li><a href="/">Team</a></li>
+                    <li><a href="/team" onClick={(event) => {
+                      event.preventDefault()
+                      navigateToPage('team')
+                    }}>Team</a></li>
                     <li><a href="/">Approach</a></li>
                   </ul>
                 </div>
@@ -684,7 +837,10 @@ function App() {
 
             <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.about ? 'mobile-menu-modal__nav-section--open' : ''}`}>
               <div className="mobile-menu-modal__nav-item">
-                <a href="/">About Us</a>
+                <a href="/" onClick={(event) => {
+                  event.preventDefault()
+                  navigateToPage('team')
+                }}>About Us</a>
                 <button
                   className="mobile-menu-modal__chevron-button"
                   type="button"
@@ -698,9 +854,15 @@ function App() {
 
               <div className="mobile-menu-modal__submenu">
                 <div className="mobile-menu-modal__submenu-group">
-                  <h3><a href="/">Our Story</a></h3>
+                  <h3><a href="/team" onClick={(event) => {
+                    event.preventDefault()
+                    navigateToPage('team')
+                  }}>Our Story</a></h3>
                   <ul>
-                    <li><a href="/">Team</a></li>
+                    <li><a href="/team" onClick={(event) => {
+                      event.preventDefault()
+                      navigateToPage('team')
+                    }}>Team</a></li>
                     <li><a href="/">Approach</a></li>
                   </ul>
                 </div>
@@ -745,6 +907,8 @@ function App() {
 
       {isContactPage ? (
         <ContactPage onBack={() => navigateToPage('home')} />
+      ) : isTeamPage ? (
+        <TeamPage onHome={() => navigateToPage('home')} onContact={() => navigateToPage('contact')} />
       ) : (
         <>
           <main className="hero-stage" aria-label="Hero background">
