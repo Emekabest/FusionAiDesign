@@ -274,7 +274,7 @@
   line-height: 0.95;
   font-weight: 500;
   letter-spacing: -0.04em;
-  background-color: rgba(12, 12, 12, 0.795);
+  background-color: rgba(12, 12, 12, 0.52);
 }
 
 .hero-stage__content p {
@@ -284,7 +284,7 @@
   font-size: clamp(16px, 1.55vw, 22px);
   line-height: 1.5;
   font-weight: 400;
-  background: rgba(12, 12, 12, 0.795);
+  background: rgba(12, 12, 12, 0.42);
 }
 
 .hero-stage__getstarted {
