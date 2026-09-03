@@ -1073,6 +1073,19 @@ function App() {
             </article>
           </section>
 
+          <section className="lobby-cards__cta" aria-label="Get started call to action">
+            <a
+              className="site-header__getstarted lobby-cards__cta-button"
+              href="/contact"
+              onClick={(event) => {
+                event.preventDefault()
+                navigateToPage('contact')
+              }}
+            >
+              Get Started
+            </a>
+          </section>
+
           <section className="testimonials" aria-label="Customer testimonials">
             <div className="testimonials__heading">
               <p className="testimonials__eyebrow">Review Spotlight</p>

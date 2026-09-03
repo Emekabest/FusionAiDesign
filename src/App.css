@@ -459,6 +459,23 @@
   gap: 16px;
 }
 
+.lobby-cards__cta {
+  max-width: 1200px;
+  margin: -36px auto 92px;
+  padding: 0 clamp(20px, 4vw, 56px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lobby-cards__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
 .lobby-card {
   position: relative;
   min-height: 520px;
@@ -513,6 +530,14 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
+.lobby-card__button {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 10px 16px;
+  font-size: 0.84rem;
+}
+
 .testimonials {
   background: #459ac2;
   padding: 82px 0 92px;
@@ -548,7 +573,8 @@
   overflow-y: hidden;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.45) rgba(255, 255, 255, 0.12);
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: clamp(20px, 4vw, 56px);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -591,7 +617,7 @@
   display: grid;
   align-content: start;
   gap: 14px;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
 }
 
 .testimonial-card h3 {
@@ -1258,6 +1284,16 @@
     padding: 0 16px 56px;
   }
 
+  .lobby-cards__cta {
+    margin: -18px 16px 72px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .lobby-cards__cta-button {
+    width: auto;
+  }
+
   .lobby-card {
     min-height: 440px;
     border-radius: 22px;
@@ -1265,6 +1301,12 @@
 
   .lobby-card__content {
     padding: 22px 18px 20px;
+  }
+
+  .lobby-card__button {
+    margin-top: 10px;
+    padding: 9px 14px;
+    font-size: 0.8rem;
   }
 
   .lobby-card__content h3 {
@@ -1284,6 +1326,8 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 16px;
   }
 
   .testimonials__viewport::-webkit-scrollbar {
@@ -1302,6 +1346,7 @@
     min-height: 200px;
     border-radius: 22px;
     padding: 22px 18px 20px;
+    scroll-snap-align: center;
   }
 
   .meet-team {
