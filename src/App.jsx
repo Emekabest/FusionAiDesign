@@ -613,7 +613,14 @@ function App() {
               </a>
             </li>
             <li>
-              <a className="site-header__getstarted" href="/">
+              <a
+                className="site-header__getstarted"
+                href="/contact"
+                onClick={(event) => {
+                  event.preventDefault()
+                  navigateToPage('contact')
+                }}
+              >
                 GetStarted
               </a>
             </li>
@@ -883,7 +890,16 @@ function App() {
             </div>
           </nav>
 
-          <a className="mobile-menu-modal__getstarted" href="/">Get Started</a>
+          <a
+            className="mobile-menu-modal__getstarted"
+            href="/contact"
+            onClick={(event) => {
+              event.preventDefault()
+              navigateToPage('contact')
+            }}
+          >
+            Get Started
+          </a>
 
           <div className="mobile-menu-modal__socials" aria-label="Social links">
             <p className="mobile-menu-modal__socials-label">Follow us</p>
@@ -921,7 +937,14 @@ function App() {
                 <br />
                 memorable experiences.
               </p>
-              <a className="site-header__getstarted hero-stage__getstarted" href="/">
+              <a
+                className="site-header__getstarted hero-stage__getstarted"
+                href="/contact"
+                onClick={(event) => {
+                  event.preventDefault()
+                  navigateToPage('contact')
+                }}
+              >
                 GetStarted
               </a>
             </div>
@@ -1107,7 +1130,14 @@ function App() {
             <p className="room-cta__body">
               Take the quiz, get matched, and build a plan you can shop at your own pace. The best part? Seeing it all come to life.
             </p>
-            <a className="site-header__getstarted room-cta__button" href="/">
+            <a
+              className="site-header__getstarted room-cta__button"
+              href="/contact"
+              onClick={(event) => {
+                event.preventDefault()
+                navigateToPage('contact')
+              }}
+            >
               Get Started
             </a>
           </section>
