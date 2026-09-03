@@ -109,6 +109,21 @@
   z-index: 5;
 }
 
+.site-header__nav-item--active > a {
+  position: relative;
+}
+
+.site-header__nav-item--active > a::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -7px;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: #f01b14;
+}
+
 .site-header__nav-item--has-menu::after {
   content: '';
   position: absolute;
@@ -1603,6 +1618,11 @@
   .site-footer__section {
     padding: 18px 0;
     border-bottom: 1px solid rgba(24, 24, 22, 0.12);
+  }
+
+  .mobile-menu-modal__nav-item--active > a {
+    color: #f01b14;
+    font-weight: 700;
   }
 
   .site-footer__section:last-child {

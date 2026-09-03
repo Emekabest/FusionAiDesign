@@ -1,7 +1,9 @@
 import './App.css'
 import './ContactPage.css'
 import './TeamPage.css'
+import './PortfolioPage.css'
 import heroVideo from '../assets/media.mp4'
+import portfolioHeroImage from '../assets/Hero1.jpg'
 import lobbyOneImage from '../assets/Lobby1.jpg'
 import lobbyTwoImage from '../assets/Lobby2.jpeg'
 import lobbyThreeImage from '../assets/Lobby3.jpg'
@@ -27,6 +29,105 @@ const socialLinks = [
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/company/fusion-architectural-interior-design/',
     icon: linkedinLogo,
+  },
+]
+
+const portfolioProjects = [
+  {
+    title: 'Coming Soon - Embassy Suites Pigeon Forge',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333962058-YTZ8MI2OL0XO4TYEYO8L/v1-1027-X.jpg?format=750w',
+  },
+  {
+    title: 'Under Renovation - Embassy Suites Ridgeland',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333645683-9K4VJG0T408N0ZDK0VLR/Front+Desk-1012+copy-x.jpg?format=750w',
+  },
+  {
+    title: 'Hampton Inn | Home2 Suites Austin',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333139219-77C59K39L6WP6NX6WHW9/20257-HI+H2-Austin+TX-Reception+Rendering.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Hapeville',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802481063-PI2ERJKWUHQDSDAMQL8K/01-Guest+Reception.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Halcyon',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802485973-RAIWYUVCBE3M4LWWYE41/01-Guest+Reception.jpg?format=750w',
+  },
+  {
+    title: 'AC Hotel Durham NC',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636737971413-XB40LKOM1DYSBWOD2JQJ/AC+Hotel+Durham-01-FrontDesk.jpg?format=750w',
+  },
+  {
+    title: 'Hyatt House Atlanta',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631829032515-PR3XQ527LE60ZERHFZMD/Hyatt-House-Atlanta-Perimeter-Center-02-Commons.jpg?format=750w',
+  },
+  {
+    title: 'Element Atlanta Buckhead',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631829491912-YZGTZ37AJ58EHBJAWC30/Element+Buckhead-08-ELM_ATLEL_Chemistry_Bar_1.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Syracuse',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631829559421-OVYS1TZJEUOM3METOC5L/02-Atrium-GYL+Syracuse+Embassy-0061_2_3.jpg?format=750w',
+  },
+  {
+    title: 'Hampton Inn Oakland CA',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631829787715-ML6QD4QCRGGWGLFK9FUM/Hampton+Inn+Oakland-04-Lobby-breakfast-seating-1.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Sugarloaf',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631830557823-LN54993JTR266I0O2BLM/Embassy+Suites+Sugarloaf+GA+-+03+-+Bar+Table.jpg?format=750w',
+  },
+  {
+    title: 'HWS Spring TX',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631830613811-7C3XCRFZGHLYW0ZVXDZD/Homewood+Suites+Spring+TX+-+02+Lobby+Rev.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Knoxville Downtown',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631830443410-9EEV9GHIVEDL4JHUS7B1/Embassy+Suites+Knoxville+Downtown-08-Rooftop+BAR_DAY_SEATING.jpg?format=750w',
+  },
+  {
+    title: 'HWS Sandy Springs',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631830689565-1S73L608O13P6LXLA4L7/Homewood+Suites+Sandy+Springs+-+02+Business+Center.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites ATL',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631830745701-M5I5NWE0RNUYTZQ8K7OP/Embassy+Suites+Atlanta+Airport+-+03+Atrium.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Plainfield',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636736101400-RNWLNH4X3RX6RQL02P1X/02-Lobby+Atrium.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Knoxville West',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636735119777-9UVNZZ66T1XYKSH4FXMF/Embassy+Suites+Knoxville+-+03+Atrium+Bar.jpg?format=750w',
+  },
+  {
+    title: 'Hampton Hamilton Place',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636735085135-FUWK5BMPIJU0NYHYH7SB/Hampton+Inn+Hamilton+Place+-+01+Lobby+1.jpg?format=750w',
+  },
+  {
+    title: 'HGI Murfreesboro',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636735160639-393F15A0BWRMTVM17MUG/Hilton+Garden+Inn+Murfreesboro+-+01+Reception.jpg?format=750w',
+  },
+  {
+    title: 'HWS Mobile',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636735305755-5DJMAK8J9U45N7TPMDJU/Homewood+Suites+Mobile+-+01+Front+Desk+Lobby.jpg?format=750w',
+  },
+  {
+    title: 'Hampton Tyler Tx',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636735370536-MVNX73IB0AD2HYFZYXL5/Hampton+Inn+Tyler+TX+-+01+Lobby.jpg?format=750w',
+  },
+  {
+    title: 'Hampton Home2 Louisville',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636735902052-XD7XFPRU3HTJ50S6F14R/HAMPTON+-+HOME2+LOUISVILLE+KY+-+02+-+HAMPTON+LOBBY.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Noblesville',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636736014756-QZFYONC7QCGU9MCGCO1G/03-Bar.jpg?format=750w',
+  },
+  {
+    title: 'Embassy Suites Oklahoma City Northwest',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636736182229-BR3YPU3L6JPTI8PNFDTF/01-Guest+Reception.jpg?format=750w',
   },
 ]
 
@@ -248,6 +349,61 @@ function TeamPage({ onHome, onContact }) {
   )
 }
 
+function PortfolioPage({ onHome, onContact }) {
+  return (
+    <main className="portfolio-page" aria-label="Portfolio page">
+      <section
+        className="portfolio-page__hero"
+        style={{ backgroundImage: `url(${portfolioHeroImage})` }}
+      >
+        <div className="portfolio-page__hero-overlay" aria-hidden="true" />
+        <div className="portfolio-page__hero-content">
+          <p className="portfolio-page__eyebrow">Portfolio</p>
+          <h1>Spaces with a point of view.</h1>
+          <p>
+            Explore a collection of thoughtful interiors shaped by story, function, and the way people experience a place.
+          </p>
+          <div className="portfolio-page__actions">
+            <button className="portfolio-page__secondary-button" type="button" onClick={onHome}>
+              Back to Home
+            </button>
+            <a
+              className="portfolio-page__primary-button"
+              href="/contact"
+              onClick={(event) => {
+                event.preventDefault()
+                onContact()
+              }}
+            >
+              Start a Project
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="portfolio-page__intro">
+        <p className="portfolio-page__eyebrow">Selected work</p>
+        <h2>Designed for the moments that happen inside.</h2>
+        <p>
+          From welcoming lobbies to spaces made for gathering, every project begins with a clear understanding of its people and purpose.
+        </p>
+      </section>
+
+      <section className="portfolio-page__projects" aria-label="Selected portfolio projects">
+        {portfolioProjects.map((project) => (
+          <article className="portfolio-project" key={project.title}>
+            <img src={project.image} alt={project.title} loading="lazy" />
+            <div className="portfolio-project__content">
+              <p className="portfolio-page__eyebrow">Fusion A.I. Design</p>
+              <h2>{project.title}</h2>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+  )
+}
+
 function App() {
   const [currentPage, setCurrentPage] = useState(() => {
     if (typeof window === 'undefined') {
@@ -262,6 +418,10 @@ function App() {
       return 'team'
     }
 
+    if (window.location.pathname === '/portfolio') {
+      return 'portfolio'
+    }
+
     return 'home'
   })
   const [menuOpen, setMenuOpen] = useState(false)
@@ -273,9 +433,7 @@ function App() {
   })
   const [mobileNavOpenSections, setMobileNavOpenSections] = useState({
     design: false,
-    explore: false,
     learn: false,
-    shop: false,
     about: false,
   })
   const [footerOpenSections, setFooterOpenSections] = useState({
@@ -313,7 +471,7 @@ function App() {
     setMenuOpen(false)
 
     if (typeof window !== 'undefined') {
-      window.history.pushState({}, '', pageName === 'contact' ? '/contact' : pageName === 'team' ? '/team' : '/')
+      window.history.pushState({}, '', pageName === 'contact' ? '/contact' : pageName === 'team' ? '/team' : pageName === 'portfolio' ? '/portfolio' : '/')
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
@@ -355,6 +513,12 @@ function App() {
 
       if (window.location.pathname === '/team') {
         setCurrentPage('team')
+        setMenuOpen(false)
+        return
+      }
+
+      if (window.location.pathname === '/portfolio') {
+        setCurrentPage('portfolio')
         setMenuOpen(false)
         return
       }
@@ -402,6 +566,7 @@ function App() {
 
   const isContactPage = currentPage === 'contact'
   const isTeamPage = currentPage === 'team'
+  const isPortfolioPage = currentPage === 'portfolio'
 
   return (
     <>
@@ -459,36 +624,6 @@ function App() {
               </div>
             </li>
             <li className="site-header__nav-item site-header__nav-item--has-menu">
-              <a href="/">Explore</a>
-              <div className="design-menu explore-menu" aria-label="Explore menu">
-                <div className="design-menu__group">
-                  <h3>Ideas by Room</h3>
-                  <ul>
-                    <li><a href="/">Living Room Ideas</a></li>
-                    <li><a href="/">Bedroom Ideas</a></li>
-                    <li><a href="/">Dining Room Ideas</a></li>
-                    <li><a href="/">Home Office Ideas</a></li>
-                    <li><a href="/">Nursery Ideas</a></li>
-                    <li><a href="/">Outdoor &amp; Patio Ideas</a></li>
-                    <li><a href="/">Entryway Ideas</a></li>
-                  </ul>
-                </div>
-
-                <div className="design-menu__group">
-                  <h3>Ideas by style</h3>
-                  <ul>
-                    <li><a href="/">Modern Boho</a></li>
-                    <li><a href="/">Mid-Century Modern</a></li>
-                    <li><a href="/">Coastal</a></li>
-                    <li><a href="/">Modern Farmhouse</a></li>
-                    <li><a href="/">Traditional</a></li>
-                    <li><a href="/">Scandinavian</a></li>
-                    <li><a href="/">Glam</a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li className="site-header__nav-item site-header__nav-item--has-menu">
               <a href="/">Learn</a>
               <div className="design-menu learn-menu" aria-label="Learn menu">
                 <div className="design-menu__group">
@@ -525,52 +660,17 @@ function App() {
                 </div>
               </div>
             </li>
-            <li className="site-header__nav-item site-header__nav-item--has-menu">
-              <a href="/">Shop</a>
-              <div className="design-menu shop-menu" aria-label="Shop menu">
-                <div className="design-menu__group">
-                  <h3>Furniture</h3>
-                  <ul>
-                    <li><a href="/">Sofas &amp; Sectionals</a></li>
-                    <li><a href="/">Accent Chairs</a></li>
-                    <li><a href="/">Coffee &amp; Accent Tables</a></li>
-                    <li><a href="/">Media Consoles</a></li>
-                    <li><a href="/">Beds &amp; Headboards</a></li>
-                    <li><a href="/">Dining Tables &amp; Chairs</a></li>
-                    <li><a href="/">Shop all furniture</a></li>
-                  </ul>
-                </div>
-
-                <div className="design-menu__group">
-                  <h3>Décor &amp; lighting</h3>
-                  <ul>
-                    <li><a href="/">Rugs</a></li>
-                    <li><a href="/">Throw Pillows</a></li>
-                    <li><a href="/">Wall Art &amp; Mirrors</a></li>
-                    <li><a href="/">Table &amp; Floor Lamps</a></li>
-                    <li><a href="/">Vases &amp; Botanicals</a></li>
-                    <li><a href="/">Shop all décor</a></li>
-                  </ul>
-                </div>
-
-                <div className="design-menu__group">
-                  <h3>Our brands</h3>
-                  <ul>
-                    <li><a href="/">Burrow</a></li>
-                    <li><a href="/">Interior Define</a></li>
-                    <li><a href="/">The Citizenry</a></li>
-                    <li><a href="/">The Inside</a></li>
-                    <li><a href="/">St. Frank</a></li>
-                    <li><a href="/">Shop by style</a></li>
-                  </ul>
-                </div>
-              </div>
+            <li className={`site-header__nav-item ${isPortfolioPage ? 'site-header__nav-item--active' : ''}`}>
+              <a href="/portfolio" aria-current={isPortfolioPage ? 'page' : undefined} onClick={(event) => {
+                event.preventDefault()
+                navigateToPage('portfolio')
+              }}>Explore</a>
             </li>
-            <li className="site-header__nav-item site-header__nav-item--has-menu">
+            <li className={`site-header__nav-item site-header__nav-item--has-menu ${isTeamPage ? 'site-header__nav-item--active' : ''}`}>
               <a href="/" onClick={(event) => {
                 event.preventDefault()
                 navigateToPage('team')
-              }}>About Us</a>
+              }} aria-current={isTeamPage ? 'page' : undefined}>About Us</a>
               <div className="design-menu about-menu" aria-label="About menu">
                 <div className="design-menu__group">
                   <h3><a href="/team" onClick={(event) => {
@@ -587,9 +687,10 @@ function App() {
                 </div>
               </div>
             </li>
-            <li className="site-header__nav-item">
+            <li className={`site-header__nav-item ${isContactPage ? 'site-header__nav-item--active' : ''}`}>
               <a
                 href="/contact"
+                aria-current={isContactPage ? 'page' : undefined}
                 onClick={(event) => {
                   event.preventDefault()
                   navigateToPage('contact')
@@ -691,49 +792,6 @@ function App() {
               </div>
             </div>
 
-            <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.explore ? 'mobile-menu-modal__nav-section--open' : ''}`}>
-              <div className="mobile-menu-modal__nav-item">
-                <a href="/">Explore</a>
-                <button
-                  className="mobile-menu-modal__chevron-button"
-                  type="button"
-                  aria-label={`${mobileNavOpenSections.explore ? 'Collapse' : 'Expand'} Explore menu`}
-                  aria-expanded={mobileNavOpenSections.explore}
-                  onClick={() => toggleMobileNavSection('explore')}
-                >
-                  <span className="mobile-menu-modal__chevron" aria-hidden="true" />
-                </button>
-              </div>
-
-              <div className="mobile-menu-modal__submenu">
-                <div className="mobile-menu-modal__submenu-group">
-                  <h3>Ideas by Room</h3>
-                  <ul>
-                    <li><a href="/">Living Room Ideas</a></li>
-                    <li><a href="/">Bedroom Ideas</a></li>
-                    <li><a href="/">Dining Room Ideas</a></li>
-                    <li><a href="/">Home Office Ideas</a></li>
-                    <li><a href="/">Nursery Ideas</a></li>
-                    <li><a href="/">Outdoor &amp; Patio Ideas</a></li>
-                    <li><a href="/">Entryway Ideas</a></li>
-                  </ul>
-                </div>
-
-                <div className="mobile-menu-modal__submenu-group">
-                  <h3>Ideas by style</h3>
-                  <ul>
-                    <li><a href="/">Modern Boho</a></li>
-                    <li><a href="/">Mid-Century Modern</a></li>
-                    <li><a href="/">Coastal</a></li>
-                    <li><a href="/">Modern Farmhouse</a></li>
-                    <li><a href="/">Traditional</a></li>
-                    <li><a href="/">Scandinavian</a></li>
-                    <li><a href="/">Glam</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
             <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.learn ? 'mobile-menu-modal__nav-section--open' : ''}`}>
               <div className="mobile-menu-modal__nav-item">
                 <a href="/">Learn</a>
@@ -784,63 +842,17 @@ function App() {
               </div>
             </div>
 
-            <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.shop ? 'mobile-menu-modal__nav-section--open' : ''}`}>
-              <div className="mobile-menu-modal__nav-item">
-                <a href="/">Shop</a>
-                <button
-                  className="mobile-menu-modal__chevron-button"
-                  type="button"
-                  aria-label={`${mobileNavOpenSections.shop ? 'Collapse' : 'Expand'} Shop menu`}
-                  aria-expanded={mobileNavOpenSections.shop}
-                  onClick={() => toggleMobileNavSection('shop')}
-                >
-                  <span className="mobile-menu-modal__chevron" aria-hidden="true" />
-                </button>
-              </div>
-
-              <div className="mobile-menu-modal__submenu">
-                <div className="mobile-menu-modal__submenu-group">
-                  <h3>Furniture</h3>
-                  <ul>
-                    <li><a href="/">Sofas &amp; Sectionals</a></li>
-                    <li><a href="/">Accent Chairs</a></li>
-                    <li><a href="/">Coffee &amp; Accent Tables</a></li>
-                    <li><a href="/">Media Consoles</a></li>
-                    <li><a href="/">Beds &amp; Headboards</a></li>
-                    <li><a href="/">Dining Tables &amp; Chairs</a></li>
-                    <li><a href="/">Shop all furniture</a></li>
-                  </ul>
-                </div>
-
-                <div className="mobile-menu-modal__submenu-group">
-                  <h3>Décor &amp; lighting</h3>
-                  <ul>
-                    <li><a href="/">Rugs</a></li>
-                    <li><a href="/">Throw Pillows</a></li>
-                    <li><a href="/">Wall Art &amp; Mirrors</a></li>
-                    <li><a href="/">Table &amp; Floor Lamps</a></li>
-                    <li><a href="/">Vases &amp; Botanicals</a></li>
-                    <li><a href="/">Shop all décor</a></li>
-                  </ul>
-                </div>
-
-                <div className="mobile-menu-modal__submenu-group">
-                  <h3>Our brands</h3>
-                  <ul>
-                    <li><a href="/">Burrow</a></li>
-                    <li><a href="/">Interior Define</a></li>
-                    <li><a href="/">The Citizenry</a></li>
-                    <li><a href="/">The Inside</a></li>
-                    <li><a href="/">St. Frank</a></li>
-                    <li><a href="/">Shop by style</a></li>
-                  </ul>
-                </div>
-              </div>
+            <div className={`mobile-menu-modal__nav-item ${isPortfolioPage ? 'mobile-menu-modal__nav-item--active' : ''}`}>
+              <a href="/portfolio" aria-current={isPortfolioPage ? 'page' : undefined} onClick={(event) => {
+                event.preventDefault()
+                navigateToPage('portfolio')
+              }}>Explore</a>
+              <span className="mobile-menu-modal__chevron" aria-hidden="true" />
             </div>
 
             <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.about ? 'mobile-menu-modal__nav-section--open' : ''}`}>
-              <div className="mobile-menu-modal__nav-item">
-                <a href="/" onClick={(event) => {
+              <div className={`mobile-menu-modal__nav-item ${isTeamPage ? 'mobile-menu-modal__nav-item--active' : ''}`}>
+                <a href="/" aria-current={isTeamPage ? 'page' : undefined} onClick={(event) => {
                   event.preventDefault()
                   navigateToPage('team')
                 }}>About Us</a>
@@ -872,9 +884,10 @@ function App() {
               </div>
             </div>
 
-            <div className="mobile-menu-modal__nav-item">
+            <div className={`mobile-menu-modal__nav-item ${isContactPage ? 'mobile-menu-modal__nav-item--active' : ''}`}>
               <a
                 href="/contact"
+                aria-current={isContactPage ? 'page' : undefined}
                 onClick={(event) => {
                   event.preventDefault()
                   navigateToPage('contact')
@@ -921,6 +934,8 @@ function App() {
         <ContactPage onBack={() => navigateToPage('home')} />
       ) : isTeamPage ? (
         <TeamPage onHome={() => navigateToPage('home')} onContact={() => navigateToPage('contact')} />
+      ) : isPortfolioPage ? (
+        <PortfolioPage onHome={() => navigateToPage('home')} onContact={() => navigateToPage('contact')} />
       ) : (
         <>
           <main className="hero-stage" aria-label="Hero background">
