@@ -474,6 +474,10 @@
   justify-content: center;
   text-align: center;
   margin-inline: auto;
+  padding: 18px 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 .lobby-card {
@@ -681,6 +685,7 @@
   margin-top: 6px;
   width: fit-content;
   justify-self: center;
+  padding: 18px 50px;
 }
 
 .meet-team {
@@ -1292,6 +1297,11 @@
 
   .lobby-cards__cta-button {
     width: auto;
+    padding: 15px 42px;
+  }
+
+  .room-cta__button {
+    padding: 15px 42px;
   }
 
   .lobby-card {
