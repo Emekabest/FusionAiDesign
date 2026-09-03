@@ -8,6 +8,38 @@ import aliceImage from '../assets/Alice.jpg'
 import elaineImage from '../assets/Elaine.jpg'
 import { useEffect, useState } from 'react'
 
+const socialLinks = [
+  {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/fusionaidesigninc/',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 8.5V7c0-.7.5-1 1-1h2V3h-3c-2.2 0-3 1.8-3 3.5v2H9v3h2v9h3v-9h2.6l.4-3H14Z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/fusionaidesign/?hl=en',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="4" width="16" height="16" rx="4" ry="4" />
+        <circle cx="12" cy="12" r="4" fill="none" />
+        <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/company/fusion-architectural-interior-design/',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 9h3v10H5V9Zm1.5-5A1.5 1.5 0 1 1 5 5.5 1.5 1.5 0 0 1 6.5 4ZM10 9h3v1.4c.4-.8 1.4-1.7 3.1-1.7 3 0 3.9 2 3.9 4.8V19h-3v-4.2c0-1.4 0-3.2-2-3.2s-2.3 1.6-2.3 3.1V19h-3V9Z" />
+      </svg>
+    ),
+  },
+]
+
 function ContactPage({ onBack }) {
   return (
     <main className="contact-page" aria-label="Contact Us page">
@@ -703,23 +735,21 @@ function App() {
           <a className="mobile-menu-modal__getstarted" href="/">Get Started</a>
 
           <div className="mobile-menu-modal__socials" aria-label="Social links">
-            <a href="/" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M14 8.5V7c0-.7.5-1 1-1h2V3h-3c-2.2 0-3 1.8-3 3.5v2H9v3h2v9h3v-9h2.6l.4-3H14Z" />
-              </svg>
-            </a>
-            <a href="/" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="4" y="4" width="16" height="16" rx="4" ry="4" />
-                <circle cx="12" cy="12" r="4" fill="none" />
-                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
-              </svg>
-            </a>
-            <a href="/" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 9h3v10H5V9Zm1.5-5A1.5 1.5 0 1 1 5 5.5 1.5 1.5 0 0 1 6.5 4ZM10 9h3v1.4c.4-.8 1.4-1.7 3.1-1.7 3 0 3.9 2 3.9 4.8V19h-3v-4.2c0-1.4 0-3.2-2-3.2s-2.3 1.6-2.3 3.1V19h-3V9Z" />
-              </svg>
-            </a>
+            <p className="mobile-menu-modal__socials-label">Follow us</p>
+            <div className="mobile-menu-modal__socials-row">
+              {socialLinks.map((socialLink) => (
+                <a
+                  key={socialLink.name}
+                  href={socialLink.url}
+                  aria-label={socialLink.name}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={socialLink.name}
+                >
+                  {socialLink.icon}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -1064,10 +1094,13 @@ function App() {
               </button>
             </div>
             <ul>
-              <li>Facebook</li>
-              <li>Instagram</li>
-              <li>Pinterest</li>
-              <li>Twitter</li>
+              {socialLinks.map((socialLink) => (
+                <li key={socialLink.name}>
+                  <a href={socialLink.url} target="_blank" rel="noreferrer">
+                    {socialLink.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </section>
         </div>
