@@ -1,5 +1,5 @@
 import './App.css'
-import heroImage from '../assets/hero.jpg'
+import heroVideo from '../assets/media.mp4'
 import lobbyOneImage from '../assets/Lobby1.jpg'
 import lobbyTwoImage from '../assets/Lobby2.jpeg'
 import lobbyThreeImage from '../assets/Lobby3.jpg'
@@ -572,11 +572,16 @@ function App() {
           </a>
         </div>
 
-        <div
+        <video
           className="hero-stage__media"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          autoPlay
+          muted
+          loop
+          playsInline
           aria-hidden="true"
-        />
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
       </main>
 
       <section
