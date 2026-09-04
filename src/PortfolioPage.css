@@ -9,14 +9,23 @@
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+
+.portfolio-page__hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
 }
 
 .portfolio-page__hero-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(90deg, rgba(15, 16, 14, 0.72) 0%, rgba(15, 16, 14, 0.28) 58%, rgba(15, 16, 14, 0.12) 100%);
 }
 
@@ -225,6 +234,10 @@
 @media (max-width: 700px) {
   .portfolio-page__hero {
     min-height: 700px;
+  }
+
+  .portfolio-page__hero-media {
+    object-position: center;
   }
 
   @keyframes slideInActionsUpMobile {

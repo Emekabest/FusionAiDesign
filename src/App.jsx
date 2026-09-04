@@ -3,7 +3,7 @@ import './ContactPage.css'
 import './TeamPage.css'
 import './PortfolioPage.css'
 import heroVideo from '../assets/media.mp4'
-import portfolioHeroImage from '../assets/Hero1.jpg'
+import exploreHeroVideo from '../assets/explore-hero-media.mp4'
 import lobbyOneImage from '../assets/Lobby1.jpg'
 import lobbyTwoImage from '../assets/Lobby2.jpeg'
 import lobbyThreeImage from '../assets/Lobby3.jpg'
@@ -352,10 +352,10 @@ function TeamPage({ onHome, onContact }) {
 function PortfolioPage({ onHome, onContact }) {
   return (
     <main className="portfolio-page" aria-label="Portfolio page">
-      <section
-        className="portfolio-page__hero"
-        style={{ backgroundImage: `url(${portfolioHeroImage})` }}
-      >
+      <section className="portfolio-page__hero">
+        <video className="portfolio-page__hero-media" autoPlay muted loop playsInline aria-hidden="true">
+          <source src={exploreHeroVideo} type="video/mp4" />
+        </video>
         <div className="portfolio-page__hero-overlay" aria-hidden="true" />
         <div className="portfolio-page__hero-content">
           <p className="portfolio-page__eyebrow">Explore</p>
