@@ -163,7 +163,7 @@
 
 .portfolio-project {
   position: relative;
-  min-height: 440px;
+  min-height: 360px;
   overflow: hidden;
   border-radius: 18px;
   background: #6b6733;
@@ -173,7 +173,9 @@
 
 .portfolio-project:first-child {
   grid-column: 1 / -1;
-  min-height: 420px;
+  width: min(100%, 920px);
+  justify-self: center;
+  min-height: 280px;
 }
 
 .portfolio-project img {
