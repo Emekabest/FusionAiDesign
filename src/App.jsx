@@ -752,32 +752,34 @@ function App() {
   const isContactPage = currentPage === 'contact'
   const isTeamPage = currentPage === 'team'
   const isPortfolioPage = currentPage.startsWith('portfolio')
+  const isProjectDetailPage = currentPage.startsWith('portfolio-') && currentPage !== 'portfolio'
 
   return (
     <>
-      <header className={`site-header ${(headerSolid || isContactPage || isTeamPage) ? 'site-header--solid' : ''} ${menuOpen ? 'site-header--open' : ''}`}>
-        <a className="site-header__brand" href="/" aria-label="Fusion Home" onClick={(event) => { event.preventDefault(); navigateToPage('home') }}>
-          <img
-            src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/3f0bb9e3-71eb-4f35-b164-32c0d3e3a381/Fusion%2BFINALLogo-2022-Color.png"
-            alt="Fusion"
-          />
-        </a>
+      {!isProjectDetailPage && (
+        <header className={`site-header ${(headerSolid || isContactPage || isTeamPage) ? 'site-header--solid' : ''} ${menuOpen ? 'site-header--open' : ''}`}>
+          <a className="site-header__brand" href="/" aria-label="Fusion Home" onClick={(event) => { event.preventDefault(); navigateToPage('home') }}>
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/3f0bb9e3-71eb-4f35-b164-32c0d3e3a381/Fusion%2BFINALLogo-2022-Color.png"
+              alt="Fusion"
+            />
+          </a>
 
-        <button
-          className="site-header__toggle"
-          type="button"
-          aria-label="Toggle navigation menu"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((currentValue) => !currentValue)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+          <button
+            className="site-header__toggle"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((currentValue) => !currentValue)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
 
-        <nav className="site-header__nav" aria-label="Primary">
-          <ul className="site-header__nav-list">
-            <li className="site-header__nav-item site-header__nav-item--has-menu">
+          <nav className="site-header__nav" aria-label="Primary">
+            <ul className="site-header__nav-list">
+              <li className="site-header__nav-item site-header__nav-item--has-menu">
               <a href="/">Design</a>
               <div className="design-menu" aria-label="Design menu">
                 <div className="design-menu__group">
@@ -909,6 +911,7 @@ function App() {
           </ul>
         </div>
       </header>
+      )}
 
       <div className={`mobile-menu-modal ${menuOpen ? 'mobile-menu-modal--open' : ''}`}>
         <div className="mobile-menu-modal__panel" role="dialog" aria-modal="true" aria-label="Mobile navigation menu">

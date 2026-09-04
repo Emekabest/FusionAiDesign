@@ -682,11 +682,18 @@
   .project-detail__container {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+    display: flex;
+    flex-direction: column;
   }
   
+  .project-detail__gallery-column {
+    order: 1;
+  }
+
   .project-detail__info-sidebar {
     position: relative;
     top: 0;
+    order: 2;
   }
 
   .lightbox-modal__arrow {
