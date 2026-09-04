@@ -43,7 +43,7 @@ const portfolioProjects = [
   },
   {
     title: 'Hampton Inn | Home2 Suites Austin',
-    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333139219-77C59K39L6WP6NX6WHW9/20257-HI+H2-Austin+TX-Reception+Rendering.jpg?format=750w',
+    image: 'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333139219-77C59K39L6WP6NX6WHW9/20257-HI+H2-Austin+TX-Reception+Rendering.jpg?format=1000w',
   },
   {
     title: 'Embassy Suites Hapeville',
@@ -525,6 +525,19 @@ function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
         'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333700492-1HAAP96JPOJDI49QF4NX/v1-1012+copy-xX+copy.jpg?format=1000w',
         'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333371753-YCKRPQPUB64QOFG6A6X9/v2-1012+copy-x.jpg?format=1000w',
       ]
+    } else if (slug === 'embassy-suites-hapeville') {
+      images = [
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802481063-PI2ERJKWUHQDSDAMQL8K/01-Guest+Reception.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802496263-E1ROX2J1IY4695GGNUM3/02-Bar+and+Water+Feature.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802487653-PLSKONNY3LY33P5CSU72/03-Bar+and+Lounge.jpg?format=1000w',
+      ]
+    } else if (slug === 'embassy-suites-halcyon') {
+      images = [
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802685973-RAIWYUVCBE3M4LWWYE41/01-Guest+Reception.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802684976-DAFFD6B2N6ZBFYKZI3BI/02-Lobby+Atrium.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802686764-V4R6RX4CSPJ79OEIQ7L1/03-Bar.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802688368-FP00T11Y5N2L2Z1FUYUD/04-Dining.jpg?format=1000w',
+      ]
     } else {
       images = [
         project.image,
@@ -532,6 +545,14 @@ function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
         lobbyTwoImage,
         lobbyThreeImage
       ].filter(Boolean)
+    }
+
+    if (slug === 'hampton-inn-home2-suites-austin') {
+      images = [
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333139219-77C59K39L6WP6NX6WHW9/20257-HI+H2-Austin+TX-Reception+Rendering.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333137401-E1GEGM7FE990JUL13G4P/20257-HI+H2-Austin+TX-Lobby+Rendering.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333136723-LJTDARA37W2W0B8KLP1O/20257-HI+H2-Austin+TX-Dining+Rendering.jpg?format=1000w',
+      ]
     }
 
     return (
