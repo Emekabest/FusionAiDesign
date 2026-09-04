@@ -349,7 +349,174 @@ function TeamPage({ onHome, onContact }) {
   )
 }
 
-function PortfolioPage({ onHome, onContact }) {
+const getProjectSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+}
+
+function ProjectDetailPage({ project, images, onBack, onContact }) {
+  const [activeImageIndex, setActiveImageIndex] = useState(null)
+
+  const handlePrev = (e) => {
+    e.stopPropagation()
+    setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+  }
+
+  const handleNext = (e) => {
+    e.stopPropagation()
+    setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (activeImageIndex === null) return
+      if (e.key === 'Escape') setActiveImageIndex(null)
+      if (e.key === 'ArrowLeft') handlePrev(e)
+      if (e.key === 'ArrowRight') handleNext(e)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeImageIndex])
+
+  return (
+    <div className="project-detail-page">
+      {/* Detail Hero Section */}
+      <section className="project-detail__hero">
+        <img className="project-detail__hero-media" src={images[0]} alt={project.title} />
+        <div className="project-detail__hero-overlay" />
+        <div className="project-detail__hero-content">
+          <button className="project-detail__back-btn" onClick={onBack}>
+            <span className="arrow">←</span> Back to Explore
+          </button>
+          <p className="project-detail__category">Hospitality | Interior Design</p>
+          <h1>{project.title}</h1>
+          <div className="project-detail__meta">
+            <div className="meta-item">
+              <span className="meta-label">Location</span>
+              <span className="meta-value">
+                {project.title.includes('Pigeon Forge') ? 'Pigeon Forge, TN' : project.title.includes('Ridgeland') ? 'Ridgeland, MS' : 'Atlanta, GA'}
+              </span>
+            </div>
+            <div className="meta-item">
+              <span className="meta-label">Status</span>
+              <span className="meta-value">
+                {project.title.toLowerCase().includes('soon') ? 'Coming Soon' : project.title.toLowerCase().includes('renovation') ? 'Under Renovation' : 'Completed'}
+              </span>
+            </div>
+            <div className="meta-item">
+              <span className="meta-label">Firm</span>
+              <span className="meta-value">Fusion A.I. Design</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Grid/Details Layout */}
+      <section className="project-detail__body">
+        <div className="project-detail__container">
+          {/* Info Side Column */}
+          <div className="project-detail__info-sidebar">
+            <div className="project-detail__sticky-card">
+              <h3>The Narrative</h3>
+              <p>
+                Every space tells a story of the people who gather inside. For this hospitality project, our team integrated local materials, premium textures, and contemporary space planning to achieve a design that feels both remarkably fresh and deeply rooted in its environment.
+              </p>
+              <p>
+                From custom millwork to comprehensive FF&amp;A procurement, we executed the design from initial concept, spacing, and styling phases to final delivery.
+              </p>
+              <div className="project-detail__cta-box">
+                <h4>Shaping your own space?</h4>
+                <p>Let&apos;s collaborate on a bespoke interior design tailored to you.</p>
+                <button className="site-header__getstarted" onClick={onContact}>
+                  Start a Project
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Gallery Sidebar */}
+          <div className="project-detail__gallery-column">
+            <h2>Project Gallery</h2>
+            <p className="project-detail__gallery-subtitle">Click on any image to view fullscreen in high resolution</p>
+            <div className="project-detail__grid">
+              {images.map((image, idx) => (
+                <div 
+                  className={`project-detail__grid-item project-detail__grid-item--${idx}`} 
+                  key={idx}
+                  onClick={() => setActiveImageIndex(idx)}
+                >
+                  <img src={image} alt={`${project.title} showcase ${idx + 1}`} loading="lazy" />
+                  <div className="project-detail__grid-item-hover">
+                    <span className="hover-view-badge">View Fullscreen</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fullscreen Lightbox Modal */}
+      {activeImageIndex !== null && (
+        <div className="lightbox-modal" onClick={() => setActiveImageIndex(null)}>
+          <button className="lightbox-modal__close" onClick={() => setActiveImageIndex(null)}>&times;</button>
+          
+          <button className="lightbox-modal__arrow lightbox-modal__arrow--prev" onClick={handlePrev}>
+            &#10094;
+          </button>
+          
+          <div className="lightbox-modal__image-wrapper" onClick={(e) => e.stopPropagation()}>
+            <img src={images[activeImageIndex]} alt="Fullscreen view" />
+            <div className="lightbox-modal__caption">
+              <span>{project.title} &mdash; Image {activeImageIndex + 1} of {images.length}</span>
+            </div>
+          </div>
+          
+          <button className="lightbox-modal__arrow lightbox-modal__arrow--next" onClick={handleNext}>
+            &#10095;
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
+  const isDetail = currentPage.startsWith('portfolio-') && currentPage !== 'portfolio'
+
+  if (isDetail) {
+    const slug = currentPage.substring(10)
+    const project = portfolioProjects.find((p) => getProjectSlug(p.title) === slug) || portfolioProjects[0]
+
+    let images = []
+    if (slug === 'coming-soon-embassy-suites-pigeon-forge') {
+      images = [
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333962058-YTZ8MI2OL0XO4TYEYO8L/v1-1027-X.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333917153-9QC76WQS3XNB9X5CQWWE/v2-1027-X.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333918691-Q52FUZRX20JWSMXAMGOJ/v3-1027-X.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333919787-B8XFL2A6FM0RZ6HLAJ13/v4-1027-X.jpg?format=1000w'
+      ]
+    } else {
+      images = [
+        project.image,
+        lobbyOneImage,
+        lobbyTwoImage,
+        lobbyThreeImage
+      ].filter(Boolean)
+    }
+
+    return (
+      <ProjectDetailPage
+        project={project}
+        images={images}
+        onBack={() => onNavigate('portfolio')}
+        onContact={onContact}
+      />
+    )
+  }
+
   return (
     <main className="portfolio-page" aria-label="Portfolio page">
       <section className="portfolio-page__hero">
@@ -390,15 +557,23 @@ function PortfolioPage({ onHome, onContact }) {
       </section>
 
       <section className="portfolio-page__projects" aria-label="Selected portfolio projects">
-        {portfolioProjects.map((project) => (
-          <article className="portfolio-project" key={project.title}>
-            <img src={project.image} alt={project.title} loading="lazy" />
-            <div className="portfolio-project__content">
-              <p className="portfolio-page__eyebrow">Fusion A.I. Design</p>
-              <h2>{project.title}</h2>
-            </div>
-          </article>
-        ))}
+        {portfolioProjects.map((project) => {
+          const slug = getProjectSlug(project.title)
+          return (
+            <article
+              className="portfolio-project"
+              key={project.title}
+              onClick={() => onNavigate(`portfolio-${slug}`)}
+              style={{ cursor: 'pointer' }}
+            >
+              <img src={project.image} alt={project.title} loading="lazy" />
+              <div className="portfolio-project__content">
+                <p className="portfolio-page__eyebrow">Fusion A.I. Design</p>
+                <h2>{project.title}</h2>
+              </div>
+            </article>
+          )
+        })}
       </section>
     </main>
   )
@@ -410,16 +585,12 @@ function App() {
       return 'home'
     }
 
-    if (window.location.pathname === '/contact') {
-      return 'contact'
-    }
-
-    if (window.location.pathname === '/team') {
-      return 'team'
-    }
-
-    if (window.location.pathname === '/portfolio') {
-      return 'portfolio'
+    const { pathname } = window.location
+    if (pathname === '/contact') return 'contact'
+    if (pathname === '/team') return 'team'
+    if (pathname === '/portfolio') return 'portfolio'
+    if (pathname.startsWith('/portfolio/')) {
+      return `portfolio-${pathname.substring(11)}`
     }
 
     return 'home'
@@ -471,8 +642,15 @@ function App() {
     setMenuOpen(false)
 
     if (typeof window !== 'undefined') {
-      window.history.pushState({}, '', pageName === 'contact' ? '/contact' : pageName === 'team' ? '/team' : pageName === 'portfolio' ? '/portfolio' : '/')
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      let path = '/'
+      if (pageName === 'contact') path = '/contact'
+      else if (pageName === 'team') path = '/team'
+      else if (pageName === 'portfolio') path = '/portfolio'
+      else if (pageName.startsWith('portfolio-')) {
+        path = `/portfolio/${pageName.substring(10)}`
+      }
+      window.history.pushState({}, '', path)
+      window.scrollTo({ top: 0, behavior: 'instant' })
     }
   }
 
@@ -505,20 +683,27 @@ function App() {
         return
       }
 
-      if (window.location.pathname === '/contact') {
+      const { pathname } = window.location
+      if (pathname === '/contact') {
         setCurrentPage('contact')
         setMenuOpen(false)
         return
       }
 
-      if (window.location.pathname === '/team') {
+      if (pathname === '/team') {
         setCurrentPage('team')
         setMenuOpen(false)
         return
       }
 
-      if (window.location.pathname === '/portfolio') {
+      if (pathname === '/portfolio') {
         setCurrentPage('portfolio')
+        setMenuOpen(false)
+        return
+      }
+
+      if (pathname.startsWith('/portfolio/')) {
+        setCurrentPage(`portfolio-${pathname.substring(11)}`)
         setMenuOpen(false)
         return
       }
@@ -566,7 +751,7 @@ function App() {
 
   const isContactPage = currentPage === 'contact'
   const isTeamPage = currentPage === 'team'
-  const isPortfolioPage = currentPage === 'portfolio'
+  const isPortfolioPage = currentPage.startsWith('portfolio')
 
   return (
     <>
@@ -935,7 +1120,12 @@ function App() {
       ) : isTeamPage ? (
         <TeamPage onHome={() => navigateToPage('home')} onContact={() => navigateToPage('contact')} />
       ) : isPortfolioPage ? (
-        <PortfolioPage onHome={() => navigateToPage('home')} onContact={() => navigateToPage('contact')} />
+        <PortfolioPage
+          onHome={() => navigateToPage('home')}
+          onContact={() => navigateToPage('contact')}
+          currentPage={currentPage}
+          onNavigate={navigateToPage}
+        />
       ) : (
         <>
           <main className="hero-stage" aria-label="Hero background">
