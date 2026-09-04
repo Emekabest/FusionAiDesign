@@ -20,6 +20,13 @@
   background: linear-gradient(90deg, rgba(15, 16, 14, 0.72) 0%, rgba(15, 16, 14, 0.28) 58%, rgba(15, 16, 14, 0.12) 100%);
 }
 
+@keyframes slideUpHeroContent {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .portfolio-page__hero-content {
   position: relative;
   z-index: 1;
@@ -28,6 +35,9 @@
   margin: 0 auto;
   padding: 9rem 0 5rem;
   color: #fff;
+  opacity: 0;
+  transform: translateY(80px);
+  animation: slideUpHeroContent 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .portfolio-page__eyebrow {
@@ -64,11 +74,25 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+@keyframes slideInActionsLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .portfolio-page__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
   margin-top: 1.8rem;
+  opacity: 0;
+  transform: translateX(-60px);
+  animation: slideInActionsLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) 2s forwards;
 }
 
 .portfolio-page__secondary-button,
@@ -149,7 +173,7 @@
 
 .portfolio-project:first-child {
   grid-column: 1 / -1;
-  min-height: 520px;
+  min-height: 420px;
 }
 
 .portfolio-project img {
@@ -201,6 +225,17 @@
     min-height: 700px;
   }
 
+  @keyframes slideInActionsUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .portfolio-page__hero-content {
     padding: 8rem 0 3rem;
   }
@@ -213,6 +248,9 @@
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    opacity: 0;
+    transform: translateY(60px);
+    animation: slideInActionsUpMobile 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
   }
 
   .portfolio-page__secondary-button,

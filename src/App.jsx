@@ -358,7 +358,7 @@ function PortfolioPage({ onHome, onContact }) {
       >
         <div className="portfolio-page__hero-overlay" aria-hidden="true" />
         <div className="portfolio-page__hero-content">
-          <p className="portfolio-page__eyebrow">Portfolio</p>
+          <p className="portfolio-page__eyebrow">Explore</p>
           <h1>Spaces with a point of view.</h1>
           <p>
             Explore a collection of thoughtful interiors shaped by story, function, and the way people experience a place.
