@@ -4,6 +4,8 @@ import './TeamPage.css'
 import './PortfolioPage.css'
 import heroVideo from '../assets/media.mp4'
 import exploreHeroVideo from '../assets/explore-hero-media.mp4'
+import heroThreeImage from '../assets/Hero3.jpg'
+import heroImage from '../assets/hero.jpg'
 import lobbyOneImage from '../assets/Lobby1.jpg'
 import lobbyTwoImage from '../assets/Lobby2.jpeg'
 import lobbyThreeImage from '../assets/Lobby3.jpg'
@@ -568,7 +570,7 @@ function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
   return (
     <main className="portfolio-page" aria-label="Portfolio page">
       <section className="portfolio-page__hero">
-        <video className="portfolio-page__hero-media" autoPlay muted loop playsInline aria-hidden="true">
+        <video className="portfolio-page__hero-media" autoPlay muted loop playsInline aria-hidden="true" poster={heroImage}>
           <source src={exploreHeroVideo} type="video/mp4" />
         </video>
         <div className="portfolio-page__hero-overlay" aria-hidden="true" />
@@ -1213,6 +1215,7 @@ function App() {
               loop
               playsInline
               aria-hidden="true"
+              poster={heroThreeImage}
             >
               <source src={heroVideo} type="video/mp4" />
             </video>
