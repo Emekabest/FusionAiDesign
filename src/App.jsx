@@ -131,6 +131,12 @@ const portfolioProjects = [
   },
 ]
 
+const projectFallbackImages = [lobbyOneImage, lobbyTwoImage, lobbyThreeImage]
+
+const getProjectFallbackImage = (index) => {
+  return projectFallbackImages[index % projectFallbackImages.length]
+}
+
 function ContactPage({ onBack }) {
   return (
     <main className="contact-page" aria-label="Contact Us page">
@@ -359,6 +365,11 @@ const getProjectSlug = (title) => {
 function ProjectDetailPage({ project, images, onBack, onContact }) {
   const [activeImageIndex, setActiveImageIndex] = useState(null)
 
+  const handleImageError = (event, fallbackImage) => {
+    event.currentTarget.onerror = null
+    event.currentTarget.src = fallbackImage
+  }
+
   const handlePrev = (e) => {
     e.stopPropagation()
     setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
@@ -384,7 +395,12 @@ function ProjectDetailPage({ project, images, onBack, onContact }) {
     <div className="project-detail-page">
       {/* Detail Hero Section */}
       <section className="project-detail__hero">
-        <img className="project-detail__hero-media" src={images[0]} alt={project.title} />
+        <img
+          className="project-detail__hero-media"
+          src={images[0]}
+          alt={project.title}
+          onError={(event) => handleImageError(event, getProjectFallbackImage(0))}
+        />
         <div className="project-detail__hero-overlay" />
         <div className="project-detail__hero-content">
           <button className="project-detail__back-btn" onClick={onBack}>
@@ -447,7 +463,12 @@ function ProjectDetailPage({ project, images, onBack, onContact }) {
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
                 >
-                  <img src={image} alt={`${project.title} showcase ${idx + 1}`} loading="lazy" />
+                  <img
+                    src={image}
+                    alt={`${project.title} showcase ${idx + 1}`}
+                    loading="lazy"
+                    onError={(event) => handleImageError(event, getProjectFallbackImage(idx))}
+                  />
                   <div className="project-detail__grid-item-hover">
                     <span className="hover-view-badge">View Fullscreen</span>
                   </div>
@@ -497,6 +518,12 @@ function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
         'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333917153-9QC76WQS3XNB9X5CQWWE/v2-1027-X.jpg?format=1000w',
         'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333918691-Q52FUZRX20JWSMXAMGOJ/v3-1027-X.jpg?format=1000w',
         'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333919787-B8XFL2A6FM0RZ6HLAJ13/v4-1027-X.jpg?format=1000w'
+      ]
+    } else if (slug === 'under-renovation-embassy-suites-ridgeland') {
+      images = [
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333645683-9K4VJG0T408N0ZDK0VLR/Front+Desk-1012+copy-x.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333700492-1HAAP96JPOJDI49QF4NX/v1-1012+copy-xX+copy.jpg?format=1000w',
+        'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333371753-YCKRPQPUB64QOFG6A6X9/v2-1012+copy-x.jpg?format=1000w',
       ]
     } else {
       images = [
@@ -566,7 +593,12 @@ function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
               onClick={() => onNavigate(`portfolio-${slug}`)}
               style={{ cursor: 'pointer' }}
             >
-              <img src={project.image} alt={project.title} loading="lazy" />
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                onError={(event) => handleImageError(event, getProjectFallbackImage(portfolioProjects.indexOf(project)))}
+              />
               <div className="portfolio-project__content">
                 <p className="portfolio-page__eyebrow">Fusion A.I. Design</p>
                 <h2>{project.title}</h2>
