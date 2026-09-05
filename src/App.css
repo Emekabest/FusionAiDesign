@@ -274,6 +274,13 @@
   display: none;
 }
 
+@keyframes slideUpHeroStageContent {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero-stage__content {
   position: relative;
   z-index: 2;
@@ -282,6 +289,9 @@
   margin: 0 auto;
   padding: 24vh 0 0;
   color: #fff;
+  opacity: 0;
+  transform: translateY(80px);
+  animation: slideUpHeroStageContent 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hero-stage__content h1 {
@@ -304,12 +314,25 @@
   background: transparent;
 }
 
+@keyframes slideInGetStartedStage {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .hero-stage__getstarted {
   display: inline-flex;
   align-items: center;
   margin-top: 26px;
   padding: 18px 50px;
-
+  opacity: 0;
+  transform: translateX(-60px);
+  animation: slideInGetStartedStage 1.2s cubic-bezier(0.16, 1, 0.3, 1) 2s forwards;
 }
 
 .hero-stage__media {
