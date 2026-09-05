@@ -1448,7 +1448,7 @@ function App() {
                     <li><a href="/">What Is Online Interior Design?</a></li>
                     <li><a href="/">Online vs. Traditional Interior Design</a></li>
                     <li><a href="/">What's My Interior Design Style?</a></li>
-                    <li><a href="/">Is Havenly Worth It?</a></li>
+                    <li><a href="/">Is Fusion Worth It?</a></li>
                     <li><a href="/">Interior Design Guides</a></li>
                   </ul>
                 </div>
