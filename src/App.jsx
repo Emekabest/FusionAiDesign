@@ -14,7 +14,7 @@ import elaineImage from '../assets/Elaine.jpg'
 import facebookLogo from '../assets/facebook.png'
 import instagramLogo from '../assets/instagram.png'
 import linkedinLogo from '../assets/linkedin.png'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 const socialLinks = [
   {
@@ -367,6 +367,14 @@ const getProjectSlug = (title) => {
 function ProjectDetailPage({ project, images, onBack, onContact }) {
   const [activeImageIndex, setActiveImageIndex] = useState(null)
 
+  const handleBackClick = () => {
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      window.history.back()
+    } else {
+      onBack()
+    }
+  }
+
   const handleImageError = (event, fallbackImage) => {
     event.currentTarget.onerror = null
     event.currentTarget.src = fallbackImage
@@ -405,7 +413,7 @@ function ProjectDetailPage({ project, images, onBack, onContact }) {
         />
         <div className="project-detail__hero-overlay" />
         <div className="project-detail__hero-content">
-          <button className="project-detail__back-btn" onClick={onBack}>
+          <button className="project-detail__back-btn" onClick={handleBackClick}>
             <span className="arrow">←</span> Back to Explore
           </button>
           <p className="project-detail__category">Hospitality | Interior Design</p>
@@ -671,6 +679,13 @@ function App() {
     follow: false,
   })
 
+  const currentPageRef = useRef(currentPage)
+  const portfolioScrollYRef = useRef(0)
+
+  useEffect(() => {
+    currentPageRef.current = currentPage
+  }, [currentPage])
+
   const toggleFooterSection = (sectionName) => {
     setFooterOpenSections((currentSections) => ({
       ...currentSections,
@@ -693,6 +708,10 @@ function App() {
   }
 
   const navigateToPage = (pageName) => {
+    if (currentPage === 'portfolio' && pageName.startsWith('portfolio-')) {
+      portfolioScrollYRef.current = window.scrollY
+    }
+
     setCurrentPage(pageName)
     setMenuOpen(false)
 
@@ -705,7 +724,14 @@ function App() {
         path = `/portfolio/${pageName.substring(10)}`
       }
       window.history.pushState({}, '', path)
-      window.scrollTo({ top: 0, behavior: 'instant' })
+
+      if (pageName === 'portfolio' && currentPage.startsWith('portfolio-')) {
+        setTimeout(() => {
+          window.scrollTo({ top: portfolioScrollYRef.current, behavior: 'instant' })
+        }, 30)
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' })
+      }
     }
   }
 
@@ -739,32 +765,31 @@ function App() {
       }
 
       const { pathname } = window.location
+      const prevPage = currentPageRef.current
+
+      let nextPage = 'home'
       if (pathname === '/contact') {
-        setCurrentPage('contact')
-        setMenuOpen(false)
-        return
+        nextPage = 'contact'
+      } else if (pathname === '/team') {
+        nextPage = 'team'
+      } else if (pathname === '/portfolio') {
+        nextPage = 'portfolio'
+      } else if (pathname.startsWith('/portfolio/')) {
+        nextPage = `portfolio-${pathname.substring(11)}`
       }
 
-      if (pathname === '/team') {
-        setCurrentPage('team')
-        setMenuOpen(false)
-        return
+      if (prevPage === 'portfolio' && nextPage.startsWith('portfolio-')) {
+        portfolioScrollYRef.current = window.scrollY
       }
 
-      if (pathname === '/portfolio') {
-        setCurrentPage('portfolio')
-        setMenuOpen(false)
-        return
-      }
-
-      if (pathname.startsWith('/portfolio/')) {
-        setCurrentPage(`portfolio-${pathname.substring(11)}`)
-        setMenuOpen(false)
-        return
-      }
-
-      setCurrentPage('home')
+      setCurrentPage(nextPage)
       setMenuOpen(false)
+
+      if (nextPage === 'portfolio' && prevPage.startsWith('portfolio-')) {
+        setTimeout(() => {
+          window.scrollTo({ top: portfolioScrollYRef.current, behavior: 'instant' })
+        }, 30)
+      }
     }
 
     const handleScroll = () => {
