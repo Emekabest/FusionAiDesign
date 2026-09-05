@@ -1733,16 +1733,16 @@ function App() {
             />
           </section>
 
-          <section className="lobby-cards__cta" aria-label="Get started call to action">
+          <section className="lobby-cards__cta" aria-label="Explore projects call to action">
             <a
               className="site-header__getstarted lobby-cards__cta-button"
-              href="/contact"
+              href="/portfolio"
               onClick={(event) => {
                 event.preventDefault()
-                navigateToPage('contact')
+                navigateToPage('portfolio')
               }}
             >
-              Get Started
+              Explore Projects
             </a>
           </section>
 
