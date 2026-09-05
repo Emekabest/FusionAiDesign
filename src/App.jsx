@@ -794,6 +794,77 @@ function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
   )
 }
 
+function LobbyCardComponent({ title, description, defaultImg, fallbackImgs }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+  const [previousSlideIndex, setPreviousSlideIndex] = useState(null)
+
+  const images = [defaultImg, ...fallbackImgs].filter(Boolean)
+
+  useEffect(() => {
+    let intervalId
+    let startTimeoutId
+
+    if (isHovered && images.length > 1 && window.innerWidth > 720) {
+      // 350ms hover intent check before cycling from the second image
+      startTimeoutId = setTimeout(() => {
+        setPreviousSlideIndex(0)
+        setActiveSlideIndex(1)
+
+        intervalId = setInterval(() => {
+          setActiveSlideIndex((prevIndex) => {
+            setPreviousSlideIndex(prevIndex)
+            return (prevIndex + 1) % images.length
+          })
+        }, 2600)
+      }, 350)
+    } else {
+      setActiveSlideIndex(0)
+      setPreviousSlideIndex(null)
+    }
+
+    return () => {
+      clearTimeout(startTimeoutId)
+      clearInterval(intervalId)
+    }
+  }, [isHovered, images.length])
+
+  return (
+    <article
+      className="lobby-card"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="lobby-card__images-wrapper">
+        {images.map((imgUrl, idx) => {
+          let layerClass = 'lobby-card__media'
+          if (idx === activeSlideIndex) {
+            layerClass += ' lobby-card__media--active'
+          } else if (idx === previousSlideIndex) {
+            layerClass += ' lobby-card__media--transitioning'
+          } else {
+            layerClass += ' lobby-card__media--hidden'
+          }
+
+          return (
+            <img
+              key={idx}
+              className={layerClass}
+              src={imgUrl}
+              alt={`${title} slide ${idx + 1}`}
+              loading="lazy"
+            />
+          )
+        })}
+      </div>
+      <div className="lobby-card__content">
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+    </article>
+  )
+}
+
 function App() {
   const [currentPage, setCurrentPage] = useState(() => {
     if (typeof window === 'undefined') {
@@ -1017,27 +1088,27 @@ function App() {
                 <div className="design-menu__group">
                   <h3>Work with a designer</h3>
                   <ul>
-                    <li><a href="/">Interior Design Services</a></li>
-                    <li><a href="/">In-Person Interior Design</a></li>
-                    <li><a href="/">AI Interior Design</a></li>
+                    <li><p className="design-menu__text">Interior Design Services</p></li>
+                    <li><p className="design-menu__text">In-Person Interior Design</p></li>
+                    <li><p className="design-menu__text">AI Interior Design</p></li>
                   </ul>
                 </div>
 
                 <div className="design-menu__group">
                   <h3>Find your designer</h3>
                   <ul>
-                    <li><a href="/">Interior Designers</a></li>
-                    <li><a href="/">Designers by City</a></li>
+                    <li><p className="design-menu__text">Interior Designers</p></li>
+                    <li><p className="design-menu__text">Designers by City</p></li>
                   </ul>
                 </div>
 
                 <div className="design-menu__group">
                   <h3>Plan your project</h3>
                   <ul>
-                    <li><a href="/">Pricing &amp; Packages</a></li>
-                    <li><a href="/">Interior Design Cost Guide</a></li>
-                    <li><a href="/">Interior Design Style Quiz</a></li>
-                    <li><a href="/">Gift Cards</a></li>
+                    <li><p className="design-menu__text">Pricing &amp; Packages</p></li>
+                    <li><p className="design-menu__text">Interior Design Cost Guide</p></li>
+                    <li><p className="design-menu__text">Interior Design Style Quiz</p></li>
+                    <li><p className="design-menu__text">Gift Cards</p></li>
                   </ul>
                 </div>
               </div>
@@ -1048,33 +1119,33 @@ function App() {
                 <div className="design-menu__group">
                   <h3>Design 101</h3>
                   <ul>
-                    <li><a href="/">What Is Online Interior Design?</a></li>
-                    <li><a href="/">Online vs. Traditional Interior Design</a></li>
-                    <li><a href="/">What's My Interior Design Style?</a></li>
-                    <li><a href="/">Is Havenly Worth It?</a></li>
-                    <li><a href="/">Interior Design Guides</a></li>
+                    <li><p className="design-menu__text">What Is Online Interior Design?</p></li>
+                    <li><p className="design-menu__text">Online vs. Traditional Interior Design</p></li>
+                    <li><p className="design-menu__text">What's My Interior Design Style?</p></li>
+                    <li><p className="design-menu__text">Is Havenly Worth It?</p></li>
+                    <li><p className="design-menu__text">Interior Design Guides</p></li>
                   </ul>
                 </div>
 
                 <div className="design-menu__group">
                   <h3>Cost Guides</h3>
                   <ul>
-                    <li><a href="/">How Much Does Interior Design Cost?</a></li>
-                    <li><a href="/">Kitchen Renovation Costs</a></li>
-                    <li><a href="/">Bathroom Renovation Costs</a></li>
-                    <li><a href="/">Living Room Design Costs</a></li>
-                    <li><a href="/">See all guides</a></li>
+                    <li><p className="design-menu__text">How Much Does Interior Design Cost?</p></li>
+                    <li><p className="design-menu__text">Kitchen Renovation Costs</p></li>
+                    <li><p className="design-menu__text">Bathroom Renovation Costs</p></li>
+                    <li><p className="design-menu__text">Living Room Design Costs</p></li>
+                    <li><p className="design-menu__text">See all guides</p></li>
                   </ul>
                 </div>
 
                 <div className="design-menu__group">
                   <h3>From the blog</h3>
                   <ul>
-                    <li><a href="/">Decorating How-To</a></li>
-                    <li><a href="/">Style Guides</a></li>
-                    <li><a href="/">Furniture Buying Guides</a></li>
-                    <li><a href="/">Home Tours</a></li>
-                    <li><a href="/">Visit the blog</a></li>
+                    <li><p className="design-menu__text">Decorating How-To</p></li>
+                    <li><p className="design-menu__text">Style Guides</p></li>
+                    <li><p className="design-menu__text">Furniture Buying Guides</p></li>
+                    <li><p className="design-menu__text">Home Tours</p></li>
+                    <li><p className="design-menu__text">Visit the blog</p></li>
                   </ul>
                 </div>
               </div>
@@ -1477,41 +1548,35 @@ function App() {
           </section>
 
           <section className="lobby-cards" aria-label="Lobby design cards">
-            <article className="lobby-card">
-              <div className="lobby-card__image-wrap">
-                <img src={lobbyOneImage} alt="Lobby design inspiration one" />
-              </div>
-              <div className="lobby-card__content">
-                <h3>Design Your Timeline</h3>
-                <p>
-                  Start when you are ready and move at a pace that fits your life, with guidance that keeps every step simple.
-                </p>
-              </div>
-            </article>
+            <LobbyCardComponent
+              title="Design Your Timeline"
+              description="Start when you are ready and move at a pace that fits your life, with guidance that keeps every step simple."
+              defaultImg={lobbyOneImage}
+              fallbackImgs={[
+                'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333962058-YTZ8MI2OL0XO4TYEYO8L/v1-1027-X.jpg?format=750w',
+                'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333645683-9K4VJG0T408N0ZDK0VLR/Front+Desk-1012+copy-x.jpg?format=750w',
+              ]}
+            />
 
-            <article className="lobby-card">
-              <div className="lobby-card__image-wrap">
-                <img src={lobbyTwoImage} alt="Lobby design inspiration two" />
-              </div>
-              <div className="lobby-card__content">
-                <h3>Bring Your Inspiration</h3>
-                <p>
-                  Share the ideas, colors, and references you love, and let a designer shape them into a cohesive space.
-                </p>
-              </div>
-            </article>
+            <LobbyCardComponent
+              title="Bring Your Inspiration"
+              description="Share the ideas, colors, and references you love, and let a designer shape them into a cohesive space."
+              defaultImg={lobbyTwoImage}
+              fallbackImgs={[
+                'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802481063-PI2ERJKWUHQDSDAMQL8K/01-Guest+Reception.jpg?format=750w',
+                'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802685973-RAIWYUVCBE3M4LWWYE41/01-Guest+Reception.jpg?format=750w',
+              ]}
+            />
 
-            <article className="lobby-card">
-              <div className="lobby-card__image-wrap">
-                <img src={lobbyThreeImage} alt="Lobby design inspiration three" />
-              </div>
-              <div className="lobby-card__content">
-                <h3>Shop at the Best Prices</h3>
-                <p>
-                  Discover thoughtful options and well-priced pieces that help you complete the room without losing style.
-                </p>
-              </div>
-            </article>
+            <LobbyCardComponent
+              title="Shop at the Best Prices"
+              description="Discover thoughtful options and well-priced pieces that help you complete the room without losing style."
+              defaultImg={lobbyThreeImage}
+              fallbackImgs={[
+                'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1636737971413-XB40LKOM1DYSBWOD2JQJ/AC+Hotel+Durham-01-FrontDesk.jpg?format=750w',
+                'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631829032515-PR3XQ527LE60ZERHFZMD/Hyatt-House-Atlanta-Perimeter-Center-02-Commons.jpg?format=750w',
+              ]}
+            />
           </section>
 
           <section className="lobby-cards__cta" aria-label="Get started call to action">
