@@ -1028,7 +1028,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
+    /* width: 32px; */
     height: 32px;
     border: 0;
     padding: 0;
@@ -1039,6 +1039,7 @@
 
   .mobile-menu-modal__chevron {
     position: relative;
+    display: block;
     width: 14px;
     height: 14px;
     flex: 0 0 14px;
@@ -1047,19 +1048,20 @@
   .mobile-menu-modal__chevron::before {
     content: '';
     position: absolute;
-    inset: 2px 0 0;
-    margin: auto;
+    top: 50%;
+    left: 50%;
     width: 8px;
     height: 8px;
+    box-sizing: border-box;
     border-right: 2px solid #333;
     border-bottom: 2px solid #333;
-    transform: rotate(45deg);
+    transform: translate(-50%, -65%) rotate(45deg);
+    transform-origin: center;
     transition: transform 180ms ease;
   }
 
   .mobile-menu-modal__nav-section--open .mobile-menu-modal__chevron::before {
-    transform: rotate(-135deg);
-    inset: 0 0 2px;
+    transform: translate(-50%, -35%) rotate(-135deg);
   }
 
   .mobile-menu-modal__submenu {
