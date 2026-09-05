@@ -491,15 +491,24 @@ const getProjectSlug = (title) => {
     .replace(/(^-|-$)/g, '')
 }
 
-function ProjectDetailPage({ project, images, onBack, onContact }) {
+function ProjectDetailPage({ project, images, onBack, onContact, onNavigate }) {
   const [activeImageIndex, setActiveImageIndex] = useState(null)
 
+  const currentIndex = portfolioProjects.findIndex(p => p.title === project.title)
+  const prevProject = index => {
+    const idx = (index - 1 + portfolioProjects.length) % portfolioProjects.length
+    return portfolioProjects[idx]
+  }
+  const nextProject = index => {
+    const idx = (index + 1) % portfolioProjects.length
+    return portfolioProjects[idx]
+  }
+
+  const pProject = currentIndex !== -1 ? prevProject(currentIndex) : null
+  const nProject = currentIndex !== -1 ? nextProject(currentIndex) : null
+
   const handleBackClick = () => {
-    if (typeof window !== 'undefined' && window.history.length > 1) {
-      window.history.back()
-    } else {
-      onBack()
-    }
+    onBack()
   }
 
   const handlePrev = (e) => {
@@ -611,6 +620,39 @@ function ProjectDetailPage({ project, images, onBack, onContact }) {
         </div>
       </section>
 
+      {/* Direct Portfolio Navigation Sibling Bar */}
+      {(pProject || nProject) && (
+        <section className="project-detail__nav-bar">
+          <div className="project-detail__nav-bar-container">
+            {pProject && (
+              <button
+                className="project-detail__nav-bar-btn project-detail__nav-bar-btn--prev"
+                onClick={() => onNavigate(`portfolio-${getProjectSlug(pProject.title)}`)}
+              >
+                <span className="nav-bar-arrow">←</span>
+                <div className="nav-bar-info">
+                  <span className="nav-bar-label">Previous Project</span>
+                  <span className="nav-bar-title">{pProject.title}</span>
+                </div>
+              </button>
+            )}
+            <div className="project-detail__nav-bar-divider" />
+            {nProject && (
+              <button
+                className="project-detail__nav-bar-btn project-detail__nav-bar-btn--next"
+                onClick={() => onNavigate(`portfolio-${getProjectSlug(nProject.title)}`)}
+              >
+                <div className="nav-bar-info">
+                  <span className="nav-bar-label">Next Project</span>
+                  <span className="nav-bar-title">{nProject.title}</span>
+                </div>
+                <span className="nav-bar-arrow">→</span>
+              </button>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Fullscreen Lightbox Modal */}
       {activeImageIndex !== null && (
         <div className="lightbox-modal" onClick={() => setActiveImageIndex(null)}>
@@ -693,6 +735,7 @@ function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
         images={images}
         onBack={() => onNavigate('portfolio')}
         onContact={onContact}
+        onNavigate={onNavigate}
       />
     )
   }

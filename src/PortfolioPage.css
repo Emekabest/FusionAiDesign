@@ -441,7 +441,7 @@
 
 /* Main content */
 .project-detail__body {
-  padding: 5rem 0 7rem;
+  padding: 5rem 0 1rem;
 }
 
 .project-detail__container {
@@ -758,6 +758,124 @@
   }
   
   .lightbox-modal__arrow {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   PROJECT NAV BAR STYLES
+   ========================================================================== */
+.project-detail__nav-bar {
+  border-top: 1px solid rgba(24, 24, 22, 0.08);
+  border-bottom: 1px solid rgba(24, 24, 22, 0.08);
+  background: #fbfbf8;
+  padding: 3rem 0;
+  margin-top: 1rem;
+}
+
+.project-detail__nav-bar-container {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.project-detail__nav-bar-btn {
+  background: transparent;
+  border: 0;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+  transition: transform 200ms ease;
+  flex: 1;
+  max-width: 45%;
+}
+
+.project-detail__nav-bar-btn--next {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.project-detail__nav-bar-btn:hover {
+  transform: translateY(-2px);
+}
+
+.nav-bar-arrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.6rem;
+  color: #181816;
+  opacity: 0.8;
+  transition: transform 200ms ease;
+}
+
+.project-detail__nav-bar-btn--prev:hover .nav-bar-arrow {
+  transform: translateX(-4px);
+}
+
+.project-detail__nav-bar-btn--next:hover .nav-bar-arrow {
+  transform: translateX(4px);
+}
+
+.nav-bar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: hidden;
+}
+
+.nav-bar-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #459ac2;
+}
+
+.nav-bar-title {
+  font-family: 'Italiana', serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  color: #181816;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.project-detail__nav-bar-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(24, 24, 22, 0.08);
+}
+
+@media (max-width: 700px) {
+  .project-detail__nav-bar {
+    padding: 2rem 0;
+  }
+
+  .project-detail__nav-bar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .project-detail__nav-bar-btn {
+    max-width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .project-detail__nav-bar-btn--next {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .project-detail__nav-bar-divider {
     display: none;
   }
 }
