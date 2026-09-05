@@ -139,6 +139,11 @@ const getProjectFallbackImage = (index) => {
   return projectFallbackImages[index % projectFallbackImages.length]
 }
 
+const handleImageErrorGlobal = (event, fallbackImage) => {
+  event.currentTarget.onerror = null
+  event.currentTarget.src = fallbackImage
+}
+
 function ContactPage({ onBack }) {
   return (
     <main className="contact-page" aria-label="Contact Us page">
@@ -357,6 +362,128 @@ function TeamPage({ onHome, onContact }) {
   )
 }
 
+const getAllProjectImages = (project) => {
+  const slug = getProjectSlug(project.title)
+  if (slug === 'coming-soon-embassy-suites-pigeon-forge') {
+    return [
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333962058-YTZ8MI2OL0XO4TYEYO8L/v1-1027-X.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333917153-9QC76WQS3XNB9X5CQWWE/v2-1027-X.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333918691-Q52FUZRX20JWSMXAMGOJ/v3-1027-X.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333919787-B8XFL2A6FM0RZ6HLAJ13/v4-1027-X.jpg?format=1000w'
+    ]
+  }
+  if (slug === 'under-renovation-embassy-suites-ridgeland') {
+    return [
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333645683-9K4VJG0T408N0ZDK0VLR/Front+Desk-1012+copy-x.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333700492-1HAAP96JPOJDI49QF4NX/v1-1012+copy-xX+copy.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333371753-YCKRPQPUB64QOFG6A6X9/v2-1012+copy-x.jpg?format=1000w',
+    ]
+  }
+  if (slug === 'embassy-suites-hapeville') {
+    return [
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802481063-PI2ERJKWUHQDSDAMQL8K/01-Guest+Reception.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802496263-E1ROX2J1IY4695GGNUM3/02-Bar+and+Water+Feature.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802487653-PLSKONNY3LY33P5CSU72/03-Bar+and+Lounge.jpg?format=1000w',
+    ]
+  }
+  if (slug === 'embassy-suites-halcyon') {
+    return [
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802685973-RAIWYUVCBE3M4LWWYE41/01-Guest+Reception.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802684976-DAFFD6B2N6ZBFYKZI3BI/02-Lobby+Atrium.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802686764-V4R6RX4CSPJ79OEIQ7L1/03-Bar.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1631802688368-FP00T11Y5N2L2Z1FUYUD/04-Dining.jpg?format=1000w',
+    ]
+  }
+  if (slug === 'hampton-inn-home2-suites-austin') {
+    return [
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333139219-77C59K39L6WP6NX6WHW9/20257-HI+H2-Austin+TX-Reception+Rendering.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333137401-E1GEGM7FE990JUL13G4P/20257-HI+H2-Austin+TX-Lobby+Rendering.jpg?format=1000w',
+      'https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1728333136723-LJTDARA37W2W0B8KLP1O/20257-HI+H2-Austin+TX-Dining+Rendering.jpg?format=1000w',
+    ]
+  }
+  return [
+    project.image,
+    lobbyOneImage,
+    lobbyTwoImage,
+    lobbyThreeImage
+  ].filter(Boolean)
+}
+
+function PortfolioProjectCard({ project, onNavigate, index, getProjectFallbackImage }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+  const [hoveredProjectPreviousSlideIndex, setHoveredProjectPreviousSlideIndex] = useState(null)
+
+  const images = getAllProjectImages(project)
+  const slug = getProjectSlug(project.title)
+
+  useEffect(() => {
+    let intervalId
+    let startTimeoutId
+
+    if (isHovered && images.length > 1) {
+      // 350ms of hover intent before cycling starts from the second image (index 1)
+      startTimeoutId = setTimeout(() => {
+        setHoveredProjectPreviousSlideIndex(0)
+        setActiveSlideIndex(1)
+
+        intervalId = setInterval(() => {
+          setActiveSlideIndex((prevIndex) => {
+            setHoveredProjectPreviousSlideIndex(prevIndex)
+            return (prevIndex + 1) % images.length
+          })
+        }, 2600)
+      }, 350)
+    } else {
+      setActiveSlideIndex(0)
+      setHoveredProjectPreviousSlideIndex(null)
+    }
+
+    return () => {
+      clearTimeout(startTimeoutId)
+      clearInterval(intervalId)
+    }
+  }, [isHovered, images.length])
+
+  return (
+    <article
+      className={`portfolio-project ${isHovered ? 'portfolio-project--hovered' : ''}`}
+      onClick={() => onNavigate(`portfolio-${slug}`)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ cursor: 'pointer' }}
+    >
+      <div className="portfolio-project__images-wrapper">
+        {images.map((imgUrl, idx) => {
+          let layerClass = 'portfolio-project__media'
+          if (idx === activeSlideIndex) {
+            layerClass += ' portfolio-project__media--active'
+          } else if (idx === hoveredProjectPreviousSlideIndex) {
+            layerClass += ' portfolio-project__media--transitioning'
+          } else {
+            layerClass += ' portfolio-project__media--hidden'
+          }
+
+          return (
+            <img
+              key={idx}
+              className={layerClass}
+              src={imgUrl}
+              alt={`${project.title} slide ${idx + 1}`}
+              loading="lazy"
+              onError={(event) => handleImageErrorGlobal(event, getProjectFallbackImage(index + idx))}
+            />
+          )
+        })}
+      </div>
+      <div className="portfolio-project__content">
+        <p className="portfolio-page__eyebrow">Fusion A.I. Design</p>
+        <h2>{project.title}</h2>
+      </div>
+    </article>
+  )
+}
+
 const getProjectSlug = (title) => {
   return title
     .toLowerCase()
@@ -373,11 +500,6 @@ function ProjectDetailPage({ project, images, onBack, onContact }) {
     } else {
       onBack()
     }
-  }
-
-  const handleImageError = (event, fallbackImage) => {
-    event.currentTarget.onerror = null
-    event.currentTarget.src = fallbackImage
   }
 
   const handlePrev = (e) => {
@@ -409,7 +531,7 @@ function ProjectDetailPage({ project, images, onBack, onContact }) {
           className="project-detail__hero-media"
           src={images[0]}
           alt={project.title}
-          onError={(event) => handleImageError(event, getProjectFallbackImage(0))}
+          onError={(event) => handleImageErrorGlobal(event, getProjectFallbackImage(0))}
         />
         <div className="project-detail__hero-overlay" />
         <div className="project-detail__hero-content">
@@ -477,7 +599,7 @@ function ProjectDetailPage({ project, images, onBack, onContact }) {
                     src={image}
                     alt={`${project.title} showcase ${idx + 1}`}
                     loading="lazy"
-                    onError={(event) => handleImageError(event, getProjectFallbackImage(idx))}
+                    onError={(event) => handleImageErrorGlobal(event, getProjectFallbackImage(idx))}
                   />
                   <div className="project-detail__grid-item-hover">
                     <span className="hover-view-badge">View Fullscreen</span>
@@ -615,28 +737,15 @@ function PortfolioPage({ onHome, onContact, currentPage, onNavigate }) {
       </section>
 
       <section className="portfolio-page__projects" aria-label="Selected portfolio projects">
-        {portfolioProjects.map((project) => {
-          const slug = getProjectSlug(project.title)
-          return (
-            <article
-              className="portfolio-project"
-              key={project.title}
-              onClick={() => onNavigate(`portfolio-${slug}`)}
-              style={{ cursor: 'pointer' }}
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                loading="lazy"
-                onError={(event) => handleImageError(event, getProjectFallbackImage(portfolioProjects.indexOf(project)))}
-              />
-              <div className="portfolio-project__content">
-                <p className="portfolio-page__eyebrow">Fusion A.I. Design</p>
-                <h2>{project.title}</h2>
-              </div>
-            </article>
-          )
-        })}
+        {portfolioProjects.map((project, idx) => (
+          <PortfolioProjectCard
+            key={project.title}
+            project={project}
+            index={idx}
+            onNavigate={onNavigate}
+            getProjectFallbackImage={getProjectFallbackImage}
+          />
+        ))}
       </section>
     </main>
   )
