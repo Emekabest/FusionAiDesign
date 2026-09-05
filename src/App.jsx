@@ -2,6 +2,7 @@ import './App.css'
 import './ContactPage.css'
 import './TeamPage.css'
 import './PortfolioPage.css'
+import './ServicesPage.css'
 import heroVideo from '../assets/media.mp4'
 import exploreHeroVideo from '../assets/explore-hero-media.mp4'
 import heroThreeImage from '../assets/Hero3.jpg'
@@ -491,6 +492,138 @@ const getProjectSlug = (title) => {
     .replace(/(^-|-$)/g, '')
 }
 
+function ServicesPage({ onContact }) {
+  return (
+    <main className="services-page" aria-label="Our Services page">
+      <section className="services-hero">
+        <img
+          className="services-hero__media"
+          src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1633702856255-R7MXXTO5L4X7IUMORIC9/Hyatt-House-Atlanta-Perimeter-Center-02-Commons.jpg"
+          alt="Luxury lobby space"
+        />
+        <div className="services-hero__overlay" aria-hidden="true" />
+        <div className="services-hero__content">
+          <p className="services-hero__eyebrow">Expertise</p>
+          <h1>Integrated Design &amp; Delivery</h1>
+          <p>
+            Shaping narrative-driven environments from concept formulation down to complete turn-key product realization.
+          </p>
+        </div>
+      </section>
+
+      <section className="services-section">
+        <div className="services-list">
+          {/* Service 1 */}
+          <article className="service-item">
+            <div className="service-item__content">
+              <p className="service-item__eyebrow">Design Suite</p>
+              <h2>Full-service Interior Design</h2>
+              <p>
+                Full-service Interior Design, including Interior Architectural design of specialty features and custom millwork.
+              </p>
+            </div>
+            <div className="service-item__image-wrap">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1633702856255-R7MXXTO5L4X7IUMORIC9/Hyatt-House-Atlanta-Perimeter-Center-02-Commons.jpg"
+                alt="Full-service Interior Design Showcase"
+                loading="lazy"
+              />
+            </div>
+          </article>
+
+          {/* Service 2 */}
+          <article className="service-item service-item--reverse">
+            <div className="service-item__image-wrap">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1633702991603-QAMNGLL2QAS33L54N17Q/Embassy+Suites+Knoxville+Downtown-05-Public+Area+LOBBY_002.jpg"
+                alt="Procurement Services Showcase"
+                loading="lazy"
+              />
+            </div>
+            <div className="service-item__content">
+              <p className="service-item__eyebrow">Sourcing &amp; FF&amp;A</p>
+              <h2>Procurement Services</h2>
+              <p>
+                Procurement of FFA (Furniture, Fixtures and Accessories) and decorative Finishes specified within the design scope.
+              </p>
+              <p>
+                Turnkey FFA Services are also available to include procurement of select OSE, and management of logistics, warehousing and FFA installation.
+              </p>
+            </div>
+          </article>
+
+          {/* Service 3 */}
+          <article className="service-item">
+            <div className="service-item__content">
+              <p className="service-item__eyebrow">Custom Craftsmanship</p>
+              <h2>Turnkey Millwork Service</h2>
+              <p>
+                Our design team partners with one of the best millwork manufacturers in our industry to bring you the highest quality products through a design-build-craftsman&apos;s attention to detail approach that ensures lasting quality, beauty and great value for your project&apos;s millwork scope investment.
+              </p>
+            </div>
+            <div className="service-item__image-wrap">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/5faebb4d55c63001e19a96d3/1633703028423-R163WV4D43FVB4PDFR25/Embassy+Suites+Sugarloaf+GA+-+09+-+Guestroom+Wet+Bar.jpg"
+                alt="Turnkey Millwork Showcase"
+                loading="lazy"
+              />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* Progress Section */}
+      <section className="process-section">
+        <div className="process-container">
+          <div className="process-info">
+            <p className="process-info__eyebrow">Our Methodology</p>
+            <h2>The Process</h2>
+            <p className="process-intro-text">
+              We coordinate closely with brands, project managers, and logisticians to keep your delivery workflow smooth, organized, and beautifully executed on site.
+            </p>
+            <a
+              className="process-cta-btn"
+              href="/contact"
+              onClick={(event) => {
+                event.preventDefault()
+                onContact()
+              }}
+            >
+              Schedule A Phone Consultation
+            </a>
+          </div>
+
+          <div className="process-timeline">
+            <div className="process-card">
+              <span className="process-card__num">01</span>
+              <div className="process-card__body">
+                <h4>Schedule a conversation</h4>
+                <p>Schedule a conversation so we can learn about your project needs.</p>
+              </div>
+            </div>
+
+            <div className="process-card">
+              <span className="process-card__num">02</span>
+              <div className="process-card__body">
+                <h4>Proposal Formulation</h4>
+                <p>We’ll prepare a proposal tailored to your unique project.</p>
+              </div>
+            </div>
+
+            <div className="process-card">
+              <span className="process-card__num">03</span>
+              <div className="process-card__body">
+                <h4>Interactive Design</h4>
+                <p>We’ll begin an interactive design process sure to deliver a successful final product.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
+
 function ProjectDetailPage({ project, images, onBack, onContact, onNavigate }) {
   const [activeImageIndex, setActiveImageIndex] = useState(null)
 
@@ -874,6 +1007,7 @@ function App() {
     const { pathname } = window.location
     if (pathname === '/contact') return 'contact'
     if (pathname === '/team') return 'team'
+    if (pathname === '/services') return 'services'
     if (pathname === '/portfolio') return 'portfolio'
     if (pathname.startsWith('/portfolio/')) {
       return `portfolio-${pathname.substring(11)}`
@@ -942,6 +1076,7 @@ function App() {
       let path = '/'
       if (pageName === 'contact') path = '/contact'
       else if (pageName === 'team') path = '/team'
+      else if (pageName === 'services') path = '/services'
       else if (pageName === 'portfolio') path = '/portfolio'
       else if (pageName.startsWith('portfolio-')) {
         path = `/portfolio/${pageName.substring(10)}`
@@ -995,6 +1130,8 @@ function App() {
         nextPage = 'contact'
       } else if (pathname === '/team') {
         nextPage = 'team'
+      } else if (pathname === '/services') {
+        nextPage = 'services'
       } else if (pathname === '/portfolio') {
         nextPage = 'portfolio'
       } else if (pathname.startsWith('/portfolio/')) {
@@ -1054,6 +1191,7 @@ function App() {
 
   const isContactPage = currentPage === 'contact'
   const isTeamPage = currentPage === 'team'
+  const isServicesPage = currentPage === 'services'
   const isPortfolioPage = currentPage.startsWith('portfolio')
   const isProjectDetailPage = currentPage.startsWith('portfolio-') && currentPage !== 'portfolio'
 
@@ -1122,7 +1260,7 @@ function App() {
                     <li><p className="design-menu__text">What Is Online Interior Design?</p></li>
                     <li><p className="design-menu__text">Online vs. Traditional Interior Design</p></li>
                     <li><p className="design-menu__text">What's My Interior Design Style?</p></li>
-                    <li><p className="design-menu__text">Is Havenly Worth It?</p></li>
+                    <li><p className="design-menu__text">Is Fusion Worth It?</p></li>
                     <li><p className="design-menu__text">Interior Design Guides</p></li>
                   </ul>
                 </div>
@@ -1155,6 +1293,12 @@ function App() {
                 event.preventDefault()
                 navigateToPage('portfolio')
               }}>Explore</a>
+            </li>
+            <li className={`site-header__nav-item ${isServicesPage ? 'site-header__nav-item--active' : ''}`}>
+              <a href="/services" aria-current={isServicesPage ? 'page' : undefined} onClick={(event) => {
+                event.preventDefault()
+                navigateToPage('services')
+              }}>Services</a>
             </li>
             <li className={`site-header__nav-item site-header__nav-item--has-menu ${isTeamPage ? 'site-header__nav-item--active' : ''}`}>
               <a href="/" onClick={(event) => {
@@ -1341,6 +1485,14 @@ function App() {
               <span className="mobile-menu-modal__chevron" aria-hidden="true" />
             </div>
 
+            <div className={`mobile-menu-modal__nav-item ${isServicesPage ? 'mobile-menu-modal__nav-item--active' : ''}`}>
+              <a href="/services" aria-current={isServicesPage ? 'page' : undefined} onClick={(event) => {
+                event.preventDefault()
+                navigateToPage('services')
+              }}>Services</a>
+              <span className="mobile-menu-modal__chevron" aria-hidden="true" />
+            </div>
+
             <div className={`mobile-menu-modal__nav-section ${mobileNavOpenSections.about ? 'mobile-menu-modal__nav-section--open' : ''}`}>
               <div className={`mobile-menu-modal__nav-item ${isTeamPage ? 'mobile-menu-modal__nav-item--active' : ''}`}>
                 <a href="/" aria-current={isTeamPage ? 'page' : undefined} onClick={(event) => {
@@ -1425,6 +1577,8 @@ function App() {
         <ContactPage onBack={() => navigateToPage('home')} />
       ) : isTeamPage ? (
         <TeamPage onHome={() => navigateToPage('home')} onContact={() => navigateToPage('contact')} />
+      ) : isServicesPage ? (
+        <ServicesPage onContact={() => navigateToPage('contact')} />
       ) : isPortfolioPage ? (
         <PortfolioPage
           onHome={() => navigateToPage('home')}
